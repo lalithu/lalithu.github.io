@@ -6,20 +6,20 @@ heading: Hello, I’m Lalith Uriti 👋
 header_image: /assets/images/home.JPG
 ---
 
-Thank you for visiting my website — feel free to explore and get to know me better!
+## Thank you for visiting my website — feel free to explore and get to know me better!
 
-I’m currently a student at UNC Charlotte, majoring in Computer Science with a concentration in Systems & Networks.
+### I’m currently a student at UNC Charlotte, majoring in Computer Science with a concentration in Systems & Networks.
 
-I’m passionate about exploring cloud architecture, machine learning, computational modeling, and building tools that solve real problems.
+### I’m passionate about exploring cloud architecture, machine learning, computational modeling, and building tools that solve real problems.
 
-Apart from coding, here are some things I love to do:
+### Apart from coding, here are some things I love to do:
 
 <!-- - Reading and writing -->
-- Running
-- Beating the market
-- Travelling
-- Designing and building things
-- Exploring new Tech
+### - Running
+### - Beating the market
+### - Travelling
+### - Designing and building things
+### - Exploring new Tech
 
 <section class="skills-section">
   <h2 class="skills-title">Skills</h2>
