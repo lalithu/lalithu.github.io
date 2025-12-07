@@ -1,3 +1,3 @@
-# so-you-just-run
+# MyWebsite
 
-<p align="center"><img src="assets/images/run.JPG"></p>
+<p align="center"><img src="assets/images/lcma.JPG"></p>
