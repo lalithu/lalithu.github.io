@@ -5,7 +5,7 @@ permalink: /resume/
 ---
 
 <iframe 
-  src="/so-you-just-run/assets/main.pdf"
+  src="/assets/main.pdf"
   width="100%" 
   height="800px"
   style="border:none;">
