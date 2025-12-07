@@ -9,7 +9,7 @@ header_image: /assets/images/home.JPG
 
 ## Thank you for visiting my website — feel free to explore and get to know me better!
 
-### I’m currently a student at UNC Charlotte, majoring in Computer Science with a concentration in Systems & Networks.
+### I’m currently a student at UNC Charlotte, majoring in Computer Science with a concentration in Systems &amp; Networks.
 
 ### I’m passionate about exploring cloud architecture, machine learning, computational modeling, and building tools that solve real problems.
 
