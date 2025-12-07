@@ -21,9 +21,7 @@
 title: Lalith Uriti
 email: lalithuriti@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Welcome to soyoujustrun, where I delve into 
-  the exhilarating world of running and uncover 
-  the fascinating realm of applied physics!
+  Lalith's website
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://lalithu.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
