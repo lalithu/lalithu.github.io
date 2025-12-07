@@ -12,15 +12,7 @@ The 2024 Manipal Marathon has been the highlight of my time in Manipal till date
 <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="10737842275" data-style="standard"></div><script src="https://strava-embeds.com/embed.js"></script>
 </div>
 
-<style>
-.container {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  padding-bottom: 10px;
-}
-</style>
+
 
 I faced three significant challenges during the marathon.
 

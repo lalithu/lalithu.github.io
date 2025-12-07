@@ -4,6 +4,18 @@ layout: default
 
 <div class="home">
 
+  {% if page.header_image %}
+    <div class="home-img-container">
+      <img src="{{ '/assets/images/home.JPG' | relative_url }}" class="home-img">
+    </div>
+  {% endif %}
+
+  {%- if page.heading -%}
+    <h2 class="post-list-heading">{{ page.heading }}</h2>
+  {%- endif -%}
+
+  {{ content }}
+
   {%- if site.posts.size > 0 -%}
   <h2 class="post-list-heading">{{ page.list_title | default: "Latest Posts" }}</h2>
   <ul class="post-list">
@@ -26,10 +38,5 @@ layout: default
   <p class="rss-subscribe">subscribe <a href="{{ " /feed.xml" | relative_url }}">via RSS</a></p>
   {%- endif -%}
 
-  {%- if page.heading -%}
-  <h2 class="post-list-heading">{{ page.heading }}</h2>
-  {%- endif -%}
-
-  {{ content }}
 
 </div>
