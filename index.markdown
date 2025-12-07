@@ -77,12 +77,3 @@ loadIcons(tools, "tools-grid");
 </script>
 
 
-<!--  - [EllipsePy](https://github.com/lalithu), an Orbital Mechanics Modelling Library
-
-# {% include mars2020.html %}
-
-# - Modelling Collisions
-# - Hamming Codes
-# - Bayseian Probabilities
-# - Modelling Bending & Shear in Beams
-# - Overviewing Design Parameters in Designing of Shafts --> 

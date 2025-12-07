@@ -144,6 +144,7 @@
 .social-media-list {
   list-style: none;
   margin-left: 0;
+  color: #046A38 !important;
 }
 
 .footer-col-wrapper {
@@ -162,13 +163,13 @@
 .footer-col-1 {
   width: -webkit-calc(50% - (#{$spacing-unit} / 2));
   width: calc(50% - (#{$spacing-unit} / 2));
-  text-align: left;   /* Put left column on the left */
+  text-align: left;  
 }
 
 .footer-col-2 {
   width: -webkit-calc(50% - (#{$spacing-unit} / 2));
   width: calc(50% - (#{$spacing-unit} / 2));
-  text-align: right;  /* Put social icons on the right */
+  text-align: right;  
 }
 
 @include media-query($on-laptop) {
