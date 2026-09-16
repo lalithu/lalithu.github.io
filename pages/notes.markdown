@@ -1,35 +1,351 @@
 ---
 layout: page
-title: ITSC 2214
-permalink: /2214/
+title: Notes
+permalink: /notes/
 ---
 
-## Data Structures & Algorithms with Lalith 
+<div id="notes" class="section-anchor"></div>
 
-Hi everyone! 👋
-This page is a Java knowledge map created to help support students in ITSC 2214 Data Structures & Algorithms at the Univeristy of North Carolina at Charlotte.
 
-I’m Lalith Uriti, a teaching assistant for section 004 with Dr. Dale-Marie Wilson. I put this together based on both my own experience with the course and the common questions and challenges I see students run into throughout the semester. If you ever need to reach me, feel free to email me at [luriti@charlotte.edu](mailto:luriti@charlotte.edu)
+Some of the classes I have enjoyed the most at UNC Charlotte are also classes I have had the opportunity to come back to as a Teaching Assistant.
 
-One thing that comes up a lot in DSA is that struggles usually aren’t about the data structures themselves — they come from gaps in Java fundamentals. Concepts like references vs. primitives, object behavior, recursion, control flow, and how Java actually executes code tend to show up everywhere in this class. Having a solid baseline understanding of Java is crucial for doing well in 2214.
+This page is a living collection of the concepts, explanations, study notes, technical details, and little things that stuck with me from those courses. It is not meant to replace lectures, assignments, or official course material. It is more of a place for the ideas I found important, the topics I have had to revisit or explain repeatedly, and the connections that made the material click for me.
 
-This knowledge map is meant to help with that.
+Most of these notes try to answer three questions:
 
-It visually organizes the major Java and data-structure-related concepts you’re expected to be comfortable with, shows how they break down into subtopics, and highlights how everything connects. The goal is fast recall and conceptual navigation, not step-by-step teaching or replacing lectures.
+- **What is this?**
+- **How does it connect to everything else?**
+- **What detail is easy to misunderstand or forget?**
 
-Each entry represents a concept you should recognize and understand at a high level. You can click on many entries to jump to related explanations below, letting you focus on one idea at a time while still keeping the bigger picture in mind. Think of it as a way to organize your understanding, not something you need to memorize line by line.
+Right now, this collection focuses on three areas I have especially enjoyed: **computer systems, data structures & algorithms, and introductory programming.**
 
-You can use this map to:
+### Jump to a course
 
-- review Java fundamentals before in class quizzes and the final exam,
-
-- identify weak spots to focus your studying,
-
-- or quickly refresh concepts that show up in homework, labs, or projects.
-
-This is a living resource! It reflects both topics I’ve already studied deeply and concepts I regularly revisit to keep my understanding sharp. Hopefully, it helps makes 2214 feel a little more manageable and connected.
+- [ITSC 2181 — Introduction to Computer Systems](#itsc-2181)
+- [ITSC 2214 — Data Structures & Algorithms](#itsc-2214)
+- [ITSC 1212 / 1213 — Introduction to Computer Science I & II](#itsc-1212-1213)
 
 ---
+
+<div id="itsc-2181" class="section-anchor"></div>
+
+# ITSC 2181 — Introduction to Computer Systems
+
+**TA'd for Zane Hutchens** 
+
+**Focus:** C/C++, compilation, memory, processes, threads, concurrency, and the systems underneath our programs
+
+2181 is one of the classes I have enjoyed most because it starts peeling away the abstractions we rely on when writing higher-level programs. Instead of only asking whether a program works, you start asking what is happening underneath it: where data lives, what a pointer actually represents, how a program becomes a running process, what threads share, and why two individually correct pieces of code can still interact incorrectly when they run concurrently.
+
+A lot of ideas that feel mysterious in higher-level programming become much easier to reason about once you understand the systems underneath them.
+
+## Technical bites
+
+### A program is not a process
+
+A **program** is a set of instructions stored as an executable file. A **process** is a running instance of that program with its own execution state and resources.
+
+Running the same executable twice can create two different processes.
+
+```text
+program on disk
+      ↓
+loaded by the operating system
+      ↓
+running process
+```
+
+### Compilation is only one part of getting code to run
+
+Source code does not jump directly from a `.cpp` file to the CPU.
+
+A simplified view is:
+
+```text
+source code
+    ↓
+preprocessing
+    ↓
+compilation
+    ↓
+object files
+    ↓
+linking
+    ↓
+executable
+    ↓
+OS loads process
+    ↓
+CPU executes instructions
+```
+
+Compilation translates source into lower-level instructions, while linking resolves code and symbols that may live across multiple object files or libraries.
+
+### A pointer is a value too
+
+A pointer is a variable whose value represents the address of another object or region of memory.
+
+```cpp
+int x = 10;
+int* p = &x;
+```
+
+Here:
+
+```text
+x  → stores 10
+p  → stores the address of x
+*p → accesses the value at that address
+```
+
+The distinction between a **value**, an **address**, and the **value stored at an address** is one of the most important mental models in systems programming.
+
+### Stack and heap describe different kinds of storage
+
+Function calls typically create stack frames that contain execution-related state such as local variables, parameters, and return information.
+
+Dynamically allocated memory comes from a different region and must be managed according to the language and runtime being used.
+
+A useful mental model:
+
+```text
+PROCESS MEMORY
+
+high addresses
+┌────────────────────┐
+│       stack        │
+│         ↓          │
+│                    │
+│         ↑          │
+│        heap        │
+├────────────────────┤
+│ static/global data │
+├────────────────────┤
+│        code        │
+└────────────────────┘
+low addresses
+```
+
+The exact layout is platform-dependent, but the important idea is that not all program data has the same lifetime or storage behavior.
+
+### Threads share a process, but each thread still has its own execution state
+
+Threads in the same process share resources such as the process address space, but each thread needs its own independent execution context.
+
+Conceptually:
+
+```text
+PROCESS
+├── code
+├── global/static data
+├── heap
+│
+├── Thread 1
+│   └── stack
+│
+├── Thread 2
+│   └── stack
+│
+└── Thread 3
+    └── stack
+```
+
+That combination — **shared data + independent execution** — is what makes multithreading both useful and dangerous.
+
+### `pthread_create()` starts another flow of execution
+
+A POSIX thread function has the general form:
+
+```cpp
+void* worker(void* arg)
+```
+
+A thread is created with a start routine, and the operating system/runtime may schedule that thread independently from the thread that created it.
+
+The key takeaway is that after multiple threads exist, you generally should **not assume a particular execution order unless your program explicitly synchronizes them.**
+
+### Concurrency creates bugs that sequential code cannot
+
+Consider two threads both doing:
+
+```text
+counter = counter + 1
+```
+
+That looks like one operation in source code, but conceptually it involves:
+
+```text
+read counter
+add 1
+write counter
+```
+
+If two threads interleave those steps, an update can be lost.
+
+That is a **race condition**: the result depends on timing or execution order.
+
+### Mutexes protect critical sections
+
+A **critical section** is a region of code where shared state must be accessed in a controlled way.
+
+A mutex lets one thread enter that protected region at a time.
+
+```text
+Thread A: lock ── modify shared data ── unlock
+
+Thread B:          waits...
+                  lock ── modify ── unlock
+```
+
+The point of synchronization is not to make threads run in a particular aesthetic order. It is to preserve correctness when execution overlaps.
+
+## Notes I want to keep building here
+
+- Program vs. process vs. thread
+- What actually happens when you compile a C/C++ program
+- Pointers: values, addresses, and dereferencing
+- Stack vs. heap
+- Pass-by-value and pointer-based mutation
+- Arrays and pointer arithmetic
+- Structs and memory layout
+- Processes and process creation
+- POSIX threads and `pthread_create()`
+- `pthread_join()` and thread lifetime
+- Race conditions
+- Critical sections
+- Mutexes and synchronization
+- Why thread execution order is not guaranteed
+- Context switching
+- Common segmentation fault causes
+- Debugging memory and concurrency problems
+
+### One idea I keep coming back to
+
+Computer systems makes a lot more sense when you stop treating memory, processes, and threads as vocabulary words and start drawing what exists at runtime.
+
+If I cannot sketch where the data is, who owns it, and which execution context can access it, I probably do not understand the program yet.
+
+[Back to course index](#notes)
+
+---
+
+<div id="itsc-2214" class="section-anchor"></div>
+
+# ITSC 2214 — Data Structures & Algorithms
+
+**TA'd for Dr. Dale-Marie Wilson**   
+
+**Focus:** Java, complexity, collections, linked structures, recursion, trees, hashing, graphs, and algorithmic thinking
+
+2214 is one of the classes that really changed how I thought about programming. Earlier programming courses are often centered around getting a program to produce the correct result. Data Structures & Algorithms adds another layer: **how should the data be represented, what operations need to be efficient, and how does the solution behave as the problem gets larger?**
+
+The interesting part is that there usually is not one universally best data structure. Choosing one means making tradeoffs.
+
+A recurring pattern I have noticed while working with 2214 is that difficulty with data structures often traces back to gaps in Java fundamentals. References, object behavior, recursion, control flow, method calls, and the way data moves through a program show up everywhere.
+
+That is why I originally built the Java & DSA knowledge map below.
+
+## Technical bites
+
+### Big-O describes growth, not seconds
+
+`O(n)` does **not** mean an algorithm takes `n` seconds.
+
+It describes how the amount of work grows relative to the size of the input.
+
+```text
+O(1)        constant growth
+O(log n)    logarithmic growth
+O(n)        linear growth
+O(n log n)  linearithmic growth
+O(n²)       quadratic growth
+```
+
+The useful question is:
+
+> If the input becomes much larger, how quickly does the required work grow?
+
+### An ADT describes behavior; an implementation decides how it happens
+
+A **stack** describes LIFO behavior.
+
+That stack could be implemented using:
+
+- an array,
+- a dynamic array,
+- a linked structure,
+- or another underlying representation.
+
+The interface tells you **what operations mean**. The implementation determines **how those operations are performed and what they cost**.
+
+### Hash tables are fast because of good engineering, not magic
+
+Hash-based structures can provide average-case constant-time access, but that depends on things like:
+
+- a useful hash function,
+- a reasonable load factor,
+- collision handling,
+- and resizing strategy.
+
+Collisions are unavoidable because a large set of possible keys is being mapped into a finite number of buckets.
+
+### Tree shape matters
+
+A binary search tree can be extremely efficient when its shape stays reasonably balanced.
+
+```text
+Balanced-ish BST
+
+        8
+      /   \
+     4     12
+    / \    / \
+   2   6  10 14
+```
+
+But a badly skewed tree can begin to behave more like a linked list.
+
+```text
+2
+ \
+  4
+   \
+    6
+     \
+      8
+```
+
+Same basic structure. Very different performance.
+
+### BFS and DFS differ mainly in exploration order
+
+**Breadth-first search** explores outward layer by layer.
+
+**Depth-first search** follows a path deeply before backtracking.
+
+That difference in order is why BFS is naturally useful for shortest paths in unweighted graphs, while DFS is useful for many structural exploration problems.
+
+### Recursion is easier when you stop thinking about the entire call chain
+
+A recursive method generally needs:
+
+1. a **base case** that stops,
+2. a **smaller version of the problem**, and
+3. confidence that the recursive call handles that smaller problem.
+
+Trying to mentally execute every recursive call at once usually makes recursion feel harder than it is.
+
+## Java & DSA Knowledge Map
+
+The map below organizes Java fundamentals and the major data-structure-related ideas I repeatedly come back to in 2214.
+
+Use it to:
+
+- refresh Java fundamentals,
+- identify concepts that still feel fuzzy,
+- connect structures to the operations they support,
+- review before quizzes or exams,
+- or jump into a topic without reading everything line by line.
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -464,3 +780,300 @@ Errors such as `NullPointerException` and `IndexOutOfBoundsException` occur duri
 <div id="testing" class="section-anchor"></div>
 #### <a href="#map-errorless-code" class="back-link">Testing</a>
 Testing verifies correctness using unit tests, assertions, and frameworks like `JUnit`. Automated tests detect regressions early.
+
+
+---
+
+<div id="itsc-1212-1213" class="section-anchor"></div>
+
+# ITSC 1212 / 1213 — Introduction to Computer Science I & II
+
+**TA'd for Dr. Nadia Najjar** 
+
+**Focus:** Programming fundamentals, Java, problem solving, methods, objects, arrays, collections, and recursion
+
+1212 and 1213 are where a lot of the foundations for everything else in computer science are built.
+
+These courses are not just about learning Java syntax. They are about learning how to take a problem, break it into steps, represent information in a program, control execution, organize behavior into methods and objects, and debug when your mental model does not match what the program is actually doing.
+
+I have come to appreciate these classes even more after taking upper-level systems, algorithms, networking, and machine learning courses because the same fundamentals keep showing up.
+
+## Technical bites
+
+### A variable has a type, a value, and a scope
+
+Those are three different ideas.
+
+```java
+int score = 95;
+```
+
+- `int` tells Java what kind of value can be stored.
+- `score` is the variable name.
+- `95` is the current value.
+- where `score` is declared determines where it can be accessed.
+
+A surprising amount of debugging becomes easier when you ask:
+
+> What value does this variable hold **right now**, and is this even the same variable I think it is?
+
+### Primitive values and object references behave differently
+
+With primitives:
+
+```java
+int a = 5;
+int b = a;
+b = 10;
+```
+
+Changing `b` does not change `a`.
+
+With objects, two variables can refer to the same object:
+
+```java
+Person a = new Person();
+Person b = a;
+```
+
+Now `a` and `b` refer to the same underlying object.
+
+That single idea explains a huge amount of Java behavior later on.
+
+### `==` and `.equals()` answer different questions
+
+For primitive values, `==` compares values.
+
+For references, `==` asks whether two references identify the same object.
+
+`.equals()` can be defined by a class to compare logical/content equality.
+
+That is why:
+
+```java
+String a = new String("hello");
+String b = new String("hello");
+```
+
+can represent two different objects containing equivalent text.
+
+### Control flow is the path your program takes
+
+Code does not simply exist as a block of statements. It moves through branches and repetitions.
+
+```text
+sequence
+   ↓
+decision
+  / \
+yes  no
+ |    |
+ └─→ continue
+```
+
+Understanding `if`, `else`, `switch`, `for`, `while`, `break`, and `continue` is really about understanding how execution moves.
+
+### Methods separate a problem into smaller behaviors
+
+A useful method should do one understandable job.
+
+Instead of writing one enormous `main`, you can decompose a problem:
+
+```text
+read input
+    ↓
+validate input
+    ↓
+process data
+    ↓
+format result
+    ↓
+display result
+```
+
+Each step can become a method with clear inputs and outputs.
+
+### Parameters receive values from the caller
+
+Java is pass-by-value.
+
+When an argument is supplied to a method, the method receives a copy of that value.
+
+For an object variable, the copied value is a reference.
+
+That is why a method can use a copied reference to mutate the same object even though Java is still pass-by-value.
+
+### Arrays make indexing explicit
+
+An array gives fixed-size indexed storage.
+
+```java
+int[] nums = new int[5];
+```
+
+Valid indices are:
+
+```text
+0 1 2 3 4
+```
+
+not:
+
+```text
+1 2 3 4 5
+```
+
+That small difference is behind a lot of `IndexOutOfBoundsException` errors.
+
+### Strings are objects and they are immutable
+
+Calling a method such as:
+
+```java
+name.toUpperCase();
+```
+
+does not mutate the existing `String`.
+
+You need to use the returned value:
+
+```java
+name = name.toUpperCase();
+```
+
+When repeated mutation is needed, `StringBuilder` is often a better fit.
+
+### Objects combine state and behavior
+
+A class can be thought of as a definition:
+
+```text
+Person
+├── state
+│   ├── name
+│   └── age
+│
+└── behavior
+    ├── speak()
+    └── birthday()
+```
+
+An object is one concrete runtime instance of that class.
+
+This is the point where programs begin to feel less like sequences of statements and more like systems made of interacting components.
+
+### Recursion is repeated problem reduction
+
+A recursive method calls itself on a smaller version of the same problem.
+
+For example:
+
+```text
+factorial(4)
+    ↓
+4 * factorial(3)
+        ↓
+    3 * factorial(2)
+            ↓
+        2 * factorial(1)
+                ↓
+                1
+```
+
+The two questions I always ask are:
+
+> What stops the recursion?
+
+and
+
+> Does every call move closer to that stopping condition?
+
+## Notes I want to keep building here
+
+- Java program structure
+- Primitive vs. reference types
+- Variable scope
+- Type casting
+- Arithmetic and boolean expressions
+- `if` / `else`
+- Loops and loop tracing
+- Methods and parameters
+- Return values
+- Pass-by-value
+- Strings and `StringBuilder`
+- Arrays
+- 2D arrays
+- `ArrayList`
+- Classes and objects
+- Constructors
+- `this`
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Exceptions
+- Unit testing
+- Recursion
+- Debugging strategies
+- `==` vs. `.equals()`
+- Common `NullPointerException` causes
+- Reading stack traces
+
+## Things I think matter beyond the class
+
+### Trace code before guessing
+
+When a program is confusing, write down the values.
+
+```text
+i = 0
+sum = 0
+
+iteration 1 → ...
+iteration 2 → ...
+iteration 3 → ...
+```
+
+Tracing execution is slower than guessing for about thirty seconds and much faster than guessing for thirty minutes.
+
+### Read the error message from the inside out
+
+A compiler error or stack trace is not just a failure message. It is information about:
+
+- what went wrong,
+- where Java noticed it,
+- and often which assumption in your code was false.
+
+Learning to read errors is part of learning to program.
+
+### Syntax is temporary; mental models last
+
+You can always look up the exact syntax for a loop, collection method, or API call.
+
+The important part is understanding:
+
+- what data exists,
+- what state changes,
+- what code executes next,
+- what a method receives,
+- and what an object represents.
+
+Those ideas carry into basically every language and every later CS course.
+
+---
+
+# Why I keep these notes
+
+The most useful notes are not the ones that copy a lecture slide word-for-word.
+
+They are the ones that preserve the mental model that made something click.
+
+That is what I want this page to become over time: a technical notebook I can keep expanding as I TA, take new classes, work on projects, and revisit concepts I thought I already understood.
+
+Some entries will eventually become full study guides. Some will be tiny reminders. Some will be diagrams, code examples, or explanations of mistakes I have seen repeatedly.
+
+The common goal is simple:
+
+> understand the idea well enough that it still makes sense after the exam is over.
+
+[Back to top](#notes)
+

@@ -37,7 +37,7 @@ copyright: "Lalith Uriti"
 
 # Navigation links
 header_pages:
-  - pages/2214.markdown
+  - pages/notes.markdown
   - pages/projects.markdown
   - pages/blog.markdown
   - pages/resume.markdown

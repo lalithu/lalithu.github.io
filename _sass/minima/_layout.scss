@@ -27,17 +27,17 @@
   margin-bottom: 0;
   float: left;
 
-  background: linear-gradient(
-    90deg,
-    #5856d6 0%,    /* red */
-    #007aff 15%,   /* orange */
-    #5ac8fa 30%,   /* yellow */
-    #007aff 45%,   /* green */
-    #5856d6 60%,   /* light blue */
-    #5ac8fa 75%,   /* blue */
-    #007aff 90%,   /* purple */
-    #5856d6 100%   /* red again to make seamless */
-  );
+background: linear-gradient(
+  90deg,
+  #5856d6 0%,
+  #007aff 15%,
+  #cfeeff 30%,
+  #ffffff 45%,
+  #e8f4ff 60%,
+  #5ac8fa 75%,
+  #007aff 90%,
+  #5856d6 100%
+);
   
     
   background-size: 200% auto;
