@@ -134,3 +134,143 @@ html {
     line-height: 1.3;
   }
 }
+
+/* ==========================
+   HOME HERO GALLERY
+   ========================== */
+.hero-gallery,
+.hero-gallery * {
+  box-sizing: border-box;
+}
+
+.hero-gallery {
+  --card-width: min(72vw, 980px);
+  --gallery-gap: 1.1rem;
+
+  width: 100%;
+  margin: 1.5rem 0 3rem;
+}
+
+.hero-gallery__viewport {
+  width: 100%;
+  overflow: hidden;
+
+  /* much lighter edge fade */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 1.5%,
+    black 98.5%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 1.5%,
+    black 98.5%,
+    transparent 100%
+  );
+}
+
+.hero-gallery__track {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  gap: var(--gallery-gap);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding-inline: calc((100% - var(--card-width)) / 2);
+  padding-block: 1.25rem;
+
+  scroll-snap-type: proximity;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+.hero-gallery__track::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-gallery__item {
+  flex: 0 0 var(--card-width);
+
+  aspect-ratio: 16 / 10;
+
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+
+  scroll-snap-align: center;
+
+  transform-origin: center center;
+
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: transform, opacity;
+}
+
+.hero-gallery__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  user-select: none;
+}
+
+.hero-gallery__caption {
+  min-height: 2.9rem;
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+.hero-gallery__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #171717;
+  transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+.hero-gallery__subtitle {
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  color: #777;
+  transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+.hero-gallery__title.changing,
+.hero-gallery__subtitle.changing {
+  opacity: 0;
+  transform: translateY(2px);
+}
+
+.hero-gallery__hint {
+  margin-top: 0.35rem;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: #aaa;
+}
+
+@media (max-width: 700px) {
+  .hero-gallery {
+    --card-width: 82vw;
+    --gallery-gap: 0.7rem;
+    margin-top: 1rem;
+  }
+
+  .hero-gallery__track {
+    padding-block: 1rem;
+  }
+
+  .hero-gallery__item {
+    border-radius: 10px;
+  }
+}
