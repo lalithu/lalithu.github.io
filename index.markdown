@@ -3,11 +3,11 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
 title: Home
-heading: Hello, I’m Lalith Uriti 👋
+heading: Hi I’m Lalith 👋
 header_image: /assets/images/home.JPG
 ---
 
-## Thank you for visiting my website — feel free to explore and get to know me better!
+## Thanks for visiting — feel free to explore!
 
 ### I’m currently a student at UNC Charlotte, majoring in Computer Science with a concentration in Systems &amp; Networks.
 
