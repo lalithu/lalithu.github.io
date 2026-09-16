@@ -44,11 +44,11 @@ title: Home
 
       <figure
         class="hero-gallery__item"
-        data-title="Boston"
-        data-subtitle="Massachusetts"
+        data-title="Chicago"
+        data-subtitle="Illinois"
       >
         <img
-          src="{{ '/assets/images/boston.JPG' | relative_url }}"
+          src="{{ '/assets/images/chicago.jpeg' | relative_url }}"
           alt="Boston"
           class="hero-gallery__image"
           draggable="false"
@@ -62,7 +62,7 @@ title: Home
         data-subtitle="North Carolina"
       >
         <img
-          src="{{ '/assets/images/charlotte.JPG' | relative_url }}"
+          src="{{ '/assets/images/charlotte.jpeg' | relative_url }}"
           alt="Charlotte"
           class="hero-gallery__image"
           draggable="false"

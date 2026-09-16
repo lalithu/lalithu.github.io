@@ -135,9 +135,7 @@ html {
   }
 }
 
-/* ==========================
-   HOME HERO GALLERY
-   ========================== */
+
 .hero-gallery,
 .hero-gallery * {
   box-sizing: border-box;
@@ -154,23 +152,6 @@ html {
 .hero-gallery__viewport {
   width: 100%;
   overflow: hidden;
-
-  /* much lighter edge fade */
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    black 1.5%,
-    black 98.5%,
-    transparent 100%
-  );
-
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    black 1.5%,
-    black 98.5%,
-    transparent 100%
-  );
 }
 
 .hero-gallery__track {
@@ -186,7 +167,7 @@ html {
   padding-inline: calc((100% - var(--card-width)) / 2);
   padding-block: 1.25rem;
 
-  scroll-snap-type: proximity;
+  scroll-snap-type: none;
   scroll-behavior: smooth;
 
   scrollbar-width: none;
@@ -199,7 +180,7 @@ html {
 .hero-gallery__item {
   flex: 0 0 var(--card-width);
 
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
 
   margin: 0;
   border-radius: 16px;
