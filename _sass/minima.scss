@@ -2,7 +2,9 @@
 
 // Define defaults for each variable.
 
-$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$base-font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif !default;
+$ui-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !default;
+$mono-font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace !default;
 $base-font-size:   16px !default;
 $base-font-weight: 400 !default;
 $small-font-size:  $base-font-size * 0.875 !default;
@@ -43,10 +45,13 @@ $on-laptop:        800px !default;
   font-size: $base-font-size * $ratio;
 }
 
+$portfolio-accent: #5856d6;
+
 // Import partials.
 @import
   "minima/base",
   "minima/layout",
+  "minima/portfolio",
   "minima/syntax-highlighting"
 ;
 
@@ -57,17 +62,6 @@ html {
 .knowledge-map a.map-link {
   display: inline-block;
   scroll-margin-block: 50vh;
-}
-
- // .home-img-container {
- // }
-
-.home-img {
-  width: 100%;
-  height: auto;      
-  display: block;
-  margin: 0 auto 2rem auto;
-  border-radius: 10px; 
 }
 
 .container {
@@ -85,30 +79,6 @@ html {
   display: block;
 }
 
-.skills-section {
-  margin: 2rem 0;
-  text-align: center;
-}
-
-.skills-title {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-  gap: 1rem;
-  padding: 1rem 0;
-}
-
-.skill-tile img {
-  width: 48px;
-  height: 48px;
-  margin: auto;
-  display: block;
-}
-
 .knowledge-map {
   max-width: 100%;
   overflow-x: auto;
@@ -116,7 +86,7 @@ html {
 }
 
 .knowledge-map pre {
-  font-family: Menlo, monospace;
+  font-family: $mono-font-family;
   font-size: clamp(0.7rem, 2.5vw, 1rem);
   line-height: 1.3;
   overflow-x: auto;

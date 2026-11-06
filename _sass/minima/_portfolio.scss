@@ -1,0 +1,124 @@
+.portfolio {
+  max-width: 716px;
+  margin: 0 auto;
+
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  h1 {
+    margin: 0 0 26px;
+    font-size: clamp(48px, 8vw, 76px);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -0.055em;
+  }
+
+  h1 span,
+  .portfolio-callout strong {
+    color: $portfolio-accent;
+  }
+
+  h2 {
+    margin: 0 0 20px;
+    font-size: 29px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+
+  h3 {
+    margin-bottom: 4px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.portfolio-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: clamp(30px, 6vw, 60px);
+  border-radius: 10px;
+}
+
+.portfolio-eyebrow {
+  margin: 0 0 8px;
+  color: $grey-color-dark;
+  font: 10px/1.8 $mono-font-family;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.portfolio-bio {
+  font-size: 19px;
+  line-height: 1.75;
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+.portfolio-callout {
+  margin: 24px 0 18px;
+  padding: 2px 0 2px 16px;
+  border-left: 2px solid $portfolio-accent;
+  font: 14px/1.8 $ui-font-family;
+}
+
+.portfolio-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  margin: 0;
+  padding-top: 9px;
+  list-style: none;
+  font: 12px/1.8 $mono-font-family;
+}
+
+.portfolio-intro,
+.portfolio-section {
+  scroll-margin-top: 5rem;
+}
+
+.portfolio-section {
+  margin-top: clamp(42px, 7vw, 66px);
+  padding-top: 26px;
+  border-top: 1px solid $grey-color-light;
+
+  .post-list > li {
+    margin-bottom: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid $grey-color-light;
+  }
+
+  .post-meta {
+    color: $grey-color-dark;
+    font: 11px/1.8 $mono-font-family;
+  }
+
+  .post-link {
+    font-size: 18px;
+  }
+}
+
+.portfolio-project p {
+  margin: 0;
+}
+
+@include media-query($on-palm) {
+  .portfolio-bio {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
