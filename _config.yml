@@ -35,14 +35,6 @@ author: Lalith Uriti
 # Copyright field
 copyright: "Lalith Uriti"
 
-# Navigation links
-header_pages:
-  - pages/notes.markdown
-  - pages/projects.markdown
-  - pages/blog.markdown
-  - pages/resume.markdown
-#   - pages/about.markdown
-
 # Build settings
 # Ported over to regular theme from gem-based theme minima
 # theme: minima

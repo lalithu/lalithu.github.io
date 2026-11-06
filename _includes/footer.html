@@ -1,32 +1,13 @@
-<footer class="site-footer h-card">
-  <data class="u-url" href="{{ " /" | relative_url }}"></data>
-
+<footer class="site-footer">
   <div class="wrapper">
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-            {%- if site.author -%}
-            {{ site.author | escape }}
-            {%- else -%}
-            {{ site.title | escape }}
-            {%- endif -%}
-          </li>
-          {%- if site.email -%}
-          <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-          {%- endif -%}
-          {%- if site.copyright -%}
-          <li>&copy; {{ site.copyright }} {{ 'now' | date: "%Y" }}</li>
-          {%- endif -%}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        {%- include social.html -%}
-      </div>
-    </div>
-
+    <p>&copy; {{ site.copyright | default: site.title | escape }} <time id="copyright-date" datetime="{{ 'now' | date: '%Y-%m' }}">{{ 'now' | date: '%B %Y' }}</time></p>
   </div>
-
 </footer>
+<script>
+  (() => {
+    const date = new Date();
+    const copyrightDate = document.getElementById('copyright-date');
+    copyrightDate.dateTime = String(date.getFullYear()) + '-' + String(date.getMonth() + 1).padStart(2, '0');
+    copyrightDate.textContent = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  })();
+</script>

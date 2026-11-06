@@ -2,41 +2,43 @@
 layout: default
 ---
 
-<div class="home">
+<div class="portfolio">
+  <section class="portfolio-intro" id="about" aria-labelledby="portfolio-name">
+    <img class="portfolio-photo" src="{{ page.header_image | relative_url }}" alt="Lalith Uriti" width="1716" height="1162">
 
-  {% if page.header_image %}
-    <div class="home-img-container">
-      <img src="{{ '/assets/images/home.JPG' | relative_url }}" class="home-img">
-    </div>
-  {% endif %}
+    <p class="portfolio-eyebrow">A work in progress</p>
+    <h1 id="portfolio-name">{{ site.title | escape }}<span>.</span></h1>
 
-  {%- if page.heading -%}
-    <h2 class="home-title">{{ page.heading }}</h2>
-  {%- endif -%}
+    <div class="portfolio-bio">{{ content }}</div>
 
-  {{ content }}
+    <p class="portfolio-callout"><strong>I'm on the job market</strong> for full-time Forward Deployed Engineer or Software Engineer roles, with a strong interest in startups and early-stage companies. <a href="mailto:{{ site.email }}">Let's connect <span aria-hidden="true">↗</span></a></p>
 
-  {%- if site.posts.size > 0 -%}
-  <h2 class="post-list-heading">{{ page.list_title | default: "Latest Posts" }}</h2>
-  <ul class="post-list">
-    {%- for post in site.posts -%}
-    <li>
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      <span class="post-meta">{{ post.date | date: date_format }}</span>
-      <h3>
-        <a class="post-link" href="{{ post.url | relative_url }}">
-          {{ post.title | escape }}
-        </a>
-      </h3>
-      {%- if site.show_excerpts -%}
-      {{ post.excerpt }}
-      {%- endif -%}
-    </li>
-    {%- endfor -%}
-  </ul>
+    <ul class="portfolio-links" aria-label="Find me online">
+      <li><a href="mailto:{{ site.email }}">Email <span aria-hidden="true">↗</span></a></li>
+      <li><a href="https://github.com/{{ site.github_username }}">GitHub <span aria-hidden="true">↗</span></a></li>
+      <li><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}/">LinkedIn <span aria-hidden="true">↗</span></a></li>
+      <li><a href="{{ '/resume/' | relative_url }}">Resume <span aria-hidden="true">↗</span></a></li>
+    </ul>
+  </section>
 
-  <p class="rss-subscribe">subscribe <a href="{{ site.url }}/feed.xml">via RSS</a></p>
-  {%- endif -%}
+  <section class="portfolio-section" id="projects" aria-labelledby="portfolio-projects">
+    <h2 id="portfolio-projects">Projects</h2>
+    <article class="portfolio-project">
+      <h3>EllipsePy</h3>
+      <p>A Python library for modeling and visualizing orbital trajectories.</p>
+      <ul class="portfolio-links" aria-label="EllipsePy links">
+        <li><a href="https://github.com/lalithu/EllipsePy">Source code <span aria-hidden="true">↗</span></a></li>
+        <li><a href="{{ '/projects/' | relative_url }}">Mars 2020 demo <span aria-hidden="true">↗</span></a></li>
+      </ul>
+    </article>
+  </section>
 
-
+  <section class="portfolio-section" id="blog" aria-labelledby="portfolio-blog">
+    <h2 id="portfolio-blog">Blog</h2>
+    {% include post-list.html %}
+    <ul class="portfolio-links" aria-label="More writing">
+      <li><a href="{{ '/notes/' | relative_url }}">Notes <span aria-hidden="true">↗</span></a></li>
+      <li><a href="{{ '/feed.xml' | relative_url }}">RSS <span aria-hidden="true">↗</span></a></li>
+    </ul>
+  </section>
 </div>
