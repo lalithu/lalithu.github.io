@@ -126,3 +126,11 @@
 .portfolio-project + .portfolio-project {
   margin-top: 20px;
 }
+
+.trajectory-chart {
+  display: block;
+  width: 100%;
+  height: clamp(480px, 70vw, 760px);
+  margin-bottom: $spacing-unit / 2;
+  border: 0;
+}

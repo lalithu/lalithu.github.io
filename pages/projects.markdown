@@ -7,13 +7,7 @@ permalink: /projects/
 
 {% include lorca-project.html %}
 
-<h1>
-  <a href="https://github.com/lalithu/EllipsePy" target="_blank">
-    EllipsePy — an Orbital Mechanics Modelling Library
-  </a>
-</h1>
-
- {% include mars2020.html %}
+{% include ellipsepy-project.html %}
 
 ## Ideas and stuff in progress
 
