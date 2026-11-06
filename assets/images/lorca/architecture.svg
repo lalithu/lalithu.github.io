@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="690" viewBox="0 0 1280 690" role="img" aria-labelledby="title desc">
+  <title id="title">Lorca — Local Model &amp; Harness Architecture</title>
+  <desc id="desc">The user works through the macOS app or terminal CLI. Lorca's Rust harness runs the agent loop, context management, persistent searchable memory, and tool registry with permissions. The harness exchanges requests and responses with a local model running through Ollama or llama.cpp. Rust executes permitted tools and returns observations to the model. The model decides what to do and when to finish.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f4f8ff; }
+      .panel { fill: #ffffff; stroke: #b5cbea; stroke-width: 1.6; }
+      .inner { fill: #edf4ff; stroke: #b4cbea; stroke-width: 1.4; }
+      .agent { fill: #dcecff; stroke: #709fdf; stroke-width: 1.7; }
+      .llm { fill: #e6efff; stroke: #88ace1; stroke-width: 1.7; }
+      .text { fill: #142945; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .muted { fill: #46617f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .accent { fill: #215aa5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .label { fill: #385573; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
+      .line { fill: none; stroke: #2864b9; stroke-width: 2.7; stroke-linecap: round; stroke-linejoin: round; }
+      .secondary-line { fill: none; stroke: #6585aa; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2864b9"/>
+    </marker>
+    <marker id="arrDim" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#6585aa"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1280" height="690" rx="20"/>
+  <text x="56" y="70" class="text" font-size="36" font-weight="750">lorca <tspan font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif" font-size="28">🌸🫍</tspan><tspan dx="12" class="muted" font-size="27" font-weight="450">/ local model &amp; harness architecture</tspan></text>
+
+  <!-- Frontend -->
+  <rect x="44" y="233" width="209" height="166" rx="17" class="panel"/>
+  <text x="148" y="276" text-anchor="middle" class="text" font-size="22" font-weight="700">You</text>
+  <path d="M77 295 H220" stroke="#b5cbea" stroke-width="1.3"/>
+  <text x="148" y="326" text-anchor="middle" class="muted" font-size="16">macOS app</text>
+  <text x="148" y="353" text-anchor="middle" class="muted" font-size="16">Terminal CLI</text>
+
+  <!-- Rust harness -->
+  <rect x="302" y="156" width="668" height="427" rx="21" class="panel"/>
+  <text x="334" y="197" class="text" font-size="22" font-weight="730">Rust harness</text>
+  <text x="937" y="195" text-anchor="end" class="accent" font-size="14" font-weight="600">LOCAL · MODEL-AGNOSTIC</text>
+
+  <rect x="330" y="226" width="611" height="118" rx="15" class="agent"/>
+  <text x="635" y="261" text-anchor="middle" class="text" font-size="23" font-weight="700">Agent loop</text>
+  <text x="635" y="291" text-anchor="middle" class="text" font-size="16">Context / model decisions / tools / observations / repeat</text>
+  <text x="635" y="318" text-anchor="middle" class="accent" font-size="15">Model chooses tools, reasoning path, and completion</text>
+
+  <!-- Three support pillars -->
+  <rect x="330" y="407" width="188" height="130" rx="14" class="inner"/>
+  <text x="424" y="439" text-anchor="middle" class="text" font-size="18" font-weight="700">Context</text>
+  <text x="424" y="467" text-anchor="middle" class="muted" font-size="14">Token budgets</text>
+  <text x="424" y="488" text-anchor="middle" class="muted" font-size="14">Checkpoints</text>
+  <text x="424" y="509" text-anchor="middle" class="muted" font-size="14">Input / output chunks</text>
+
+  <rect x="541" y="407" width="188" height="130" rx="14" class="inner"/>
+  <text x="635" y="439" text-anchor="middle" class="text" font-size="18" font-weight="700">Memory</text>
+  <text x="635" y="467" text-anchor="middle" class="muted" font-size="14">Saved conversations</text>
+  <text x="635" y="488" text-anchor="middle" class="muted" font-size="14">Tool history</text>
+  <text x="635" y="509" text-anchor="middle" class="muted" font-size="14">SQLite search</text>
+
+  <rect x="752" y="407" width="189" height="130" rx="14" class="inner"/>
+  <text x="846" y="439" text-anchor="middle" class="text" font-size="18" font-weight="700">Tool chest</text>
+  <text x="846" y="467" text-anchor="middle" class="muted" font-size="14">Registry + schemas</text>
+  <text x="846" y="488" text-anchor="middle" class="muted" font-size="14">Permissions + execution</text>
+  <text x="846" y="509" text-anchor="middle" class="muted" font-size="14">Files · shell · web · vision</text>
+
+  <!-- Lines from loop to pillars -->
+  <path d="M635 344 V378 H424 V406" class="secondary-line" marker-end="url(#arrDim)"/>
+  <path d="M635 378 V406" class="secondary-line" marker-end="url(#arrDim)"/>
+  <path d="M635 378 H846 V406" class="secondary-line" marker-end="url(#arrDim)"/>
+
+  <!-- Model -->
+  <rect x="1018" y="233" width="219" height="166" rx="17" class="llm"/>
+  <text x="1127" y="275" text-anchor="middle" class="text" font-size="22" font-weight="700">Local model</text>
+  <path d="M1049 294 H1207" stroke="#aac1e3" stroke-width="1.3"/>
+  <text x="1127" y="325" text-anchor="middle" class="muted" font-size="16">Ollama</text>
+  <text x="1127" y="352" text-anchor="middle" class="muted" font-size="16">llama.cpp</text>
+
+  <!-- Bidirectional functional flow: endpoints -->
+  <path d="M253 307 H301" class="line" marker-end="url(#arr)"/>
+  <path d="M302 326 H254" class="secondary-line" marker-end="url(#arrDim)"/>
+  <path d="M970 304 H1017" class="line" marker-end="url(#arr)"/>
+  <path d="M1018 327 H971" class="secondary-line" marker-end="url(#arrDim)"/>
+
+  <!-- Legend -->
+  <rect x="44" y="608" width="452" height="50" rx="12" class="panel"/>
+  <text x="62" y="638" class="label" font-weight="700">Flow</text>
+  <path d="M115 633 H146" class="line" marker-end="url(#arr)"/>
+  <text x="157" y="638" class="label">Request / action</text>
+  <path d="M290 633 H321" class="secondary-line" marker-end="url(#arrDim)"/>
+  <text x="332" y="638" class="label">Response / observation</text>
+</svg>

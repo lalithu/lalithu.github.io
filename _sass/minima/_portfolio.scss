@@ -122,3 +122,7 @@
     scroll-behavior: auto;
   }
 }
+
+.portfolio-project + .portfolio-project {
+  margin-top: 20px;
+}

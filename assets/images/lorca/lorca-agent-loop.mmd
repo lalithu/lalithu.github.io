@@ -1,0 +1,51 @@
+---
+config:
+  theme: base
+  themeVariables:
+    background: '#f4f8ff'
+    primaryColor: '#edf4ff'
+    primaryBorderColor: '#b4cbea'
+    primaryTextColor: '#142945'
+    lineColor: '#2864b9'
+    edgeLabelBackground: '#f4f8ff'
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+  themeCSS: |
+    .node rect { rx: 17px; ry: 17px; stroke-width: 1.4px; }
+    .node.decision rect { fill: #dcecff; stroke: #709fdf; stroke-width: 1.7px; }
+    .node.model rect { fill: #e6efff; stroke: #88ace1; stroke-width: 1.7px; }
+    .edgeLabel { color: #385573; font-size: 14px; }
+    .flowchart-link { stroke-width: 2.7px; stroke-linecap: round; stroke-linejoin: round; }
+  flowchart:
+    htmlLabels: false
+---
+flowchart TD
+    accTitle: Lorca model decisions, tool authorization, and context management
+    accDescr: The Rust runtime prepares a request for the local model. The model can use a tool, recall original records, ask the user, or finish. Tool results and recalled records update working context. The harness checkpoints under context pressure before returning to the model.
+
+    decision["Model decision"]
+    decision -->|Tool call| registry["Tool registry and discovery"]
+    decision -->|Recall old information| search["Search historical archive"]
+    decision -->|Ask user| pause["Pause for response"]
+    decision -->|Finish| answer["Return model's final answer"]
+
+    registry --> authorization["Rust authorization gateway"] --> permitted["Permitted?"]
+    permitted -->|Yes| execute["Execute tool"]
+    permitted -->|Approval needed| approve["Ask user"]
+    permitted -->|Denied| deny["Return denial or stop"]
+    approve -->|Approved| execute
+    execute --> observation["Capture real observation"] --> history["Persist full history"]
+    history --> working["Update active working<br/>context"]
+    search --> records["Return relevant original<br/>records"] --> working
+
+    request["User request"] --> runtime["Lorca Rust runtime"] --> profiler["Hardware and model profiler"]
+    profiler --> backend["Configure or reuse inference<br/>backend"] --> manager["Context and memory<br/>manager"]
+    observation ~~~ request
+    manager --> model["Primary local LLM"]
+    working --> pressure["Context pressure?"]
+    pressure -->|Yes| checkpoint["Create stable checkpoint"] --> model
+    pressure -->|No| model
+    model --> decision
+    answer -.-> evaluator["Future: optional evaluator<br/>LLM"]
+
+    class decision,permitted,pressure decision;
+    class model model;
