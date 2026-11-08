@@ -15,6 +15,9 @@
 
     {%- include footer.html -%}
 
+    {%- if jekyll.environment == 'production' and site.portfolio_visit_tracking -%}
+      <script defer src="{{ '/assets/js/portfolio-visits.js' | relative_url }}"></script>
+    {%- endif -%}
   </body>
 
 </html>

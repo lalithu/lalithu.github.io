@@ -60,3 +60,8 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Enable after the private collector is deployed and verified.
+portfolio_visit_tracking: false
+exclude:
+  - supabase

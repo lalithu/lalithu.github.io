@@ -1,0 +1,3 @@
+project_id = "lalithu-portfolio"
+[functions.track-portfolio-visit]
+verify_jwt = false
