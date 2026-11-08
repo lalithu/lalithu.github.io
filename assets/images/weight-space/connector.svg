@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="250" viewBox="0 0 640 250" role="img" aria-labelledby="title">
+  <title id="title">From image to answer through one soft token</title>
+  <rect width="640" height="250" rx="10" fill="#f8fafb"/>
+  <g fill="#fff" stroke="#d7dfe4">
+    <rect x="24" y="57" width="174" height="86" rx="8"/>
+    <rect x="233" y="57" width="174" height="86" rx="8" fill="#edf4f7" stroke="#8baab8"/>
+    <rect x="442" y="57" width="174" height="86" rx="8"/>
+  </g>
+  <path d="M202 100h25m-6-5 6 5-6 5m190-5h25m-6-5 6 5-6 5M111 41v10m-5-5 5 5 5-5m413 101v19m-5-5 5 5 5-5" fill="none" stroke="#52636e" stroke-width="2"/>
+  <g text-anchor="middle" font-family="system-ui,sans-serif" fill="#172733">
+    <g font-size="22" font-weight="600">
+      <text x="111" y="92">SigLIP 2</text>
+      <text x="320" y="92">Connector</text>
+      <text x="529" y="92">Qwen3</text>
+    </g>
+    <g font-size="17" fill="#405463">
+      <text x="111" y="31">Image</text>
+      <text x="111" y="120">Frozen encoder</text>
+      <text x="320" y="120">Outputs one soft token</text>
+      <text x="529" y="120">Frozen language model</text>
+      <text x="529" y="190">Picks one of 4 labels</text>
+    </g>
+    <text x="320" y="225" font-size="17" fill="#405463">Only the connector is fitted.</text>
+  </g>
+</svg>

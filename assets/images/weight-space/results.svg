@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="302" viewBox="0 0 640 302" role="img" aria-labelledby="title">
+  <title id="title">Accuracy on 100 fresh CIFAR-10 images</title>
+  <rect width="640" height="302" rx="10" fill="#f8fafb"/>
+  <g font-family="system-ui,sans-serif" fill="#172733">
+    <text x="24" y="33" font-size="21" font-weight="600">Accuracy on 100 fresh images</text>
+    <text x="24" y="56" font-size="16" fill="#405463">Four choices per image · 25% chance</text>
+    <text x="24" y="93" font-size="17">Native SigLIP</text>
+    <rect x="180" y="77" width="352" height="21" rx="3" fill="#778893"/>
+    <text x="542" y="93" font-size="17" font-weight="600">88%</text>
+    <text x="24" y="127" font-size="17">Astra connector</text>
+    <rect x="180" y="111" width="324" height="21" rx="3" fill="#35677d"/>
+    <text x="514" y="127" font-size="17" font-weight="600">81%</text>
+    <text x="24" y="161" font-size="17">Sol connector</text>
+    <rect x="180" y="145" width="320" height="21" rx="3" fill="#35677d"/>
+    <text x="510" y="161" font-size="17" font-weight="600">80%</text>
+    <text x="24" y="195" font-size="17">Fixed ridge</text>
+    <rect x="180" y="179" width="316" height="21" rx="3" fill="#778893"/>
+    <text x="506" y="195" font-size="17" font-weight="600">79%</text>
+    <text x="24" y="229" font-size="17">No image</text>
+    <rect x="180" y="213" width="100" height="21" rx="3" fill="#778893"/>
+    <text x="290" y="229" font-size="17" font-weight="600">25%</text>
+    <text x="24" y="263" font-size="17">Wrong image</text>
+    <rect x="180" y="247" width="56" height="21" rx="3" fill="#778893"/>
+    <text x="246" y="263" font-size="17" font-weight="600">14%</text>
+  </g>
+</svg>
