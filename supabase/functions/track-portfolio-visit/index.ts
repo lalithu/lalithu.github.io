@@ -1,11 +1,10 @@
-import { Reader } from "npm:mmdb-lib@3.0.4";
+import { Reader, type CountryResponse } from "npm:mmdb-lib@3.0.4";
 import { Buffer } from "node:buffer";
 import { isIP } from "node:net";
 
 const origin = "https://lalithu.github.io";
 const cors = { "Access-Control-Allow-Origin": origin, "Vary": "Origin", "Cache-Control": "no-store" };
-type GeoRecord = { country?: { names?: { en?: string }; iso_code?: string } };
-let geo: Promise<Reader<GeoRecord> | null> | undefined;
+let geo: Promise<Reader<CountryResponse> | null> | undefined;
 let retryAfter = 0;
 
 async function loadCountryDatabase() {
@@ -22,7 +21,7 @@ async function loadCountryDatabase() {
     if (!response.ok || !response.body) return null;
     const database = await new Response(response.body.pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
     if (database.byteLength > 16_000_000) return null;
-    return new Reader<GeoRecord>(Buffer.from(database));
+    return new Reader<CountryResponse>(Buffer.from(database));
   } catch { return null; }
 }
 
