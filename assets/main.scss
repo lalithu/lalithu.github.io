@@ -19,14 +19,24 @@
   font-weight: 600;
 }
 
-.resume-open {
-  display: block;
+.resume-page {
+  position: relative;
+  margin: 0 0 16px;
+  border: 1px solid #ddd;
 }
 
-.resume-open img {
+.resume-page canvas {
   display: block;
-  box-sizing: border-box;
   width: 100%;
   height: auto;
-  border: 1px solid #ddd;
+}
+
+.resume-page a {
+  position: absolute;
+}
+
+.resume-page a:hover,
+.resume-page a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
 }
