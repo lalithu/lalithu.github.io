@@ -3,3 +3,30 @@
 ---
 
 @import "minima";
+
+.resume-preview {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.resume-download {
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 8px 18px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.resume-open {
+  display: block;
+}
+
+.resume-open img {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+}
