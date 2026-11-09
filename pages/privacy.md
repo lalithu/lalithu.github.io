@@ -4,4 +4,4 @@ title: Privacy
 permalink: /privacy/
 ---
 
-My portfolio has a visitor counter. 👀
+My website has a visitor counter. 👀
