@@ -62,6 +62,6 @@ plugins:
 #   - vendor/ruby/
 
 # Enable after the private collector is deployed and verified.
-portfolio_visit_tracking: false
+portfolio_visit_tracking: true
 exclude:
   - supabase
