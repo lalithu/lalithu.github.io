@@ -14,9 +14,9 @@ I built CourseLens to answer a question a CS1 teacher might ask: **What did this
 
 ## From knowledge tracing to CourseLens
 
-In the Charlotte Machine Learning Lab, I worked with Dr. Razvan Bunescu on knowledge tracing for introductory programming. I refined a graph of **943 nodes and 2,524 edges** linking knowledge components, assessment questions, and answers. I built a PyTorch graph neural network pipeline for two targets, **concept mastery** and **misconceptions**, using synthetic learning sequences from xKT-Sim.
+Over the summer I worked with Dr. Razvan Bunescu in the Charlotte Machine Learning Lab on knowledge tracing for introductory programming. I refined a graph of **943 nodes and 2,524 edges** linking knowledge components, assessment questions, and answers. I built a PyTorch graph neural network pipeline for two targets, **concept mastery** and **misconceptions**, using synthetic learning sequences from xKT-Sim.
 
-I used Altair to inspect the simulator traces and automated loading so I could move between examples faster. CourseLens carries that trace schema and inspection workflow into a teacher interface. It reads recorded simulator output. The public demo ships with three synthetic traces and does no model inference.
+I used Altair to inspect the simulator traces and automated loading so I could move between traces faster. CourseLens carries that trace schema and inspection workflow into a teacher interface. It reads recorded simulator output. The public demo ships with three synthetic traces and does no model inference.
 
 ## One trace, one course day
 
