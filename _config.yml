@@ -65,3 +65,5 @@ plugins:
 portfolio_visit_tracking: true
 exclude:
   - supabase
+
+timezone: America/New_York

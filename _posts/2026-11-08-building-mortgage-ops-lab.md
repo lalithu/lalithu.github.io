@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Building Mortgage Ops Lab"
-date: 2026-11-08 00:00:00 -0500
 author: Lalith Uriti
 permalink: /blog/mortgage-ops-lab/
+date: 2026-11-08 18:50:19 -0500
+date_has_time: true
 ---
 
 I built Mortgage Ops Lab to see how far a small dataset could take me. I wanted one borrower record to carry through an application, a document review, funding, and an investor sale without re-entering the same information at every step.

@@ -3,6 +3,8 @@ layout: post
 title: "Weight-Space Programming"
 author: Lalith Uriti
 permalink: /blog/weight-space-programming/
+date: 2026-11-08 17:14:04 -0500
+date_has_time: true
 ---
 
 Can a text-only model answer questions about an image if you give it one token made from pixels?

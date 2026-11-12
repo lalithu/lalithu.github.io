@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Building Lorca"
-date: 2026-11-06 00:00:00 -0500
 author: Lalith Uriti
 permalink: /blog/lorca/
+date: 2026-11-06 14:45:52 -0500
+date_has_time: true
 ---
 
 Lorca is a local AI agent. I ran into three problems on longer tasks. Chats filled the model's context window, large inputs crowded out useful history, and long replies could get cut off.

@@ -1,0 +1,5 @@
+{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+<time class="dt-published" datetime="{{ include.post.date | date_to_xmlschema }}" itemprop="datePublished">
+  {{- include.post.date | date: date_format -}}
+  {%- if include.post.date_has_time %} · {{ include.post.date | date: "%-I:%M:%S %p %Z" }}{% endif -%}
+</time>

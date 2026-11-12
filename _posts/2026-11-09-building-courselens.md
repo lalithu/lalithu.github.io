@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Building CourseLens"
-date: 2026-11-09 00:00:00 -0500
 author: Lalith Uriti
 permalink: /blog/courselens/
+date: 2026-11-09 02:14:34 -0500
+date_has_time: true
 ---
 
 I built CourseLens to answer a question a CS1 teacher might ask: **What did this student appear to understand when they submitted that assignment?** The app puts the simulator’s estimate next to the recorded response so I can inspect both at the same point in the course.
