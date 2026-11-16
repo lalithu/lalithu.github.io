@@ -55,7 +55,7 @@ The demo uses its own private Supabase table, `storytime_demo_visits`, and the `
 
 Only the hosted demo loads `assets/js/storytime-demo-visits.js` in production when `storytime_demo_visit_tracking` is enabled. It honors Global Privacy Control and Do Not Track. Each full page load can record a visit; stepping through the SPA does not create additional visits. This is not a unique-person or CEO-identification system.
 
-The collector fixes `page_path` to `/demo/storytime/` server-side and records the same IP, approximate country, device classification, and bounded user-agent fields as the existing portfolio tracker. No URL query, creator code, form content, or sample transaction data is sent. Local previews do not collect visits. The table has RLS and no anonymous/authenticated read or write grants; only the server-side service role can insert.
+The collector fixes `page_path` to `/demo/storytime/` server-side and records the same IP, approximate city/region/country, device classification, and bounded user-agent fields as the existing portfolio tracker. No URL query, creator code, form content, or sample transaction data is sent. Local previews do not collect visits. The table has RLS and no anonymous/authenticated read or write grants; only the server-side service role can insert.
 
 ## Design
 

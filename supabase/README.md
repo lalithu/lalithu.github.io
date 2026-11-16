@@ -18,7 +18,7 @@ delete from public.portfolio_visits where visited_at < now() - interval '30 days
 
 ## Storytime demo visits
 
-The separate `storytime_demo_visits` table and `track-storytime-demo-visit` function collect only `/demo/storytime/` page visits. Apply `202611160001_storytime_demo_visits.sql`, then deploy the function with JWT verification off. The general portfolio tracker excludes this path. The browser honors Global Privacy Control and Do Not Track and sends no payload or credentials. Demo codes, query parameters, and transaction events are not collected.
+The separate `storytime_demo_visits` table and `track-storytime-demo-visit` function collect only `/demo/storytime/` page visits. Location uses the same DB-IP City Lite lookup as the live portfolio collector: city, region/state, and country when available, with coarser or Unknown fallbacks. Visitor IPs are resolved inside the function and are not sent to a geolocation API. Apply `202611160001_storytime_demo_visits.sql`, then deploy the function with JWT verification off. The general portfolio tracker excludes this path. The browser honors Global Privacy Control and Do Not Track and sends no payload or credentials. Demo codes, query parameters, and transaction events are not collected.
 
 ```sql
 select visited_at at time zone 'America/New_York' as time_et, page_path, ip, location, device
