@@ -43,3 +43,19 @@ Two other things I'd explore:
 - **Consumer discovery and storefronts.** A local feed could connect creator recommendations to time-sensitive restaurant or spa offers and locally fulfilled products. I'd validate consumer demand and merchant operations before building lightweight creator storefronts. This is a longer-term proposal.
 
 I want to work close to customers, help shape how people discover local businesses, and take responsibility for what I ship. I’d start with one concrete improvement: make eligibility decisions clear, test the explanations with creators, and measure whether they find relevant collaborations faster.
+
+## Interesting threads explored while researching Storytime
+
+1. **Creator discovery & eligibility.** App Store complaints about disappearing offers, unclear eligibility, and discovery friction sent me toward explainable matching and transparent ranking. I'd investigate causes with creators before deciding what needs changing.
+2. **The Local Proof Loop.** I explored connecting recommendations to purchases, repeat visits, and measurable revenue. The public foot-traffic results I reviewed don't establish end-to-end purchase attribution or reveal everything Storytime measures internally.
+3. **Verifying purchases without friction.** I'd compare POS integrations, card-linked transactions, and permissioned email receipts with Hummingbirds' receipt-upload approach. Consent, merchant coverage, and matching accuracy would determine whether manual uploads could disappear. A payment alone doesn't prove influence.
+4. **Beyond influencer marketing.** I wondered about a three-sided marketplace for merchants, creators, and consumers: creator storefronts, local pickup, restaurant discounts, and last-minute spa openings that fill unused capacity. Shopify's commerce tools and ClassPass's capacity model are useful competitive context; demand still needs testing.
+5. **Engineering exploration.** Creator Compass is my proposed small TypeScript eligibility engine: structured reason codes, explainable ranking, synthetic test data, and automated tests. I'd use it to test whether creators understand decisions before attempting a live integration. It hasn't been built.
+
+Storytime sources: [Creator terms](https://storytime.io/legal/terms-creators) · [Brand terms](https://storytime.io/legal/terms-brands) · [Privacy](https://storytime.io/legal/privacy-policy) · [Data deletion](https://storytime.io/legal/data-deletion) · [Ana Luisa case study](https://storytime.io/brands/success-stories/ana-luisa-30-percent-foot-traffic-increase) · [Creator App Store](https://apps.apple.com/us/app/storytime-influencers/id6472387521) · [Signal](https://signal.storytime.io/pricing).
+
+Purchase verification: [Square Orders API](https://developer.squareup.com/docs/orders-api/what-it-does) · [Toast Orders API](https://doc.toasttab.com/doc/devguide/portalOrdersApiOverview.html) · [Stripe email receipts](https://docs.stripe.com/receipts) · [Hummingbirds Offers](https://www.hummingbirds.com/solutions/offers).
+
+Marketplace context: [Shopify local pickup](https://help.shopify.com/en/manual/fulfillment/setup/delivery-methods/pickup-in-store) · [ClassPass on filling unused spots](https://classpass.com/partners/blog/tips-add-revenue-studio-gym).
+
+<a href="{{ '/assets/research/storytime/Storytime_Product_Diagnostic.pdf' | relative_url }}" download>Storytime — Product Diagnostic &amp; Creator Compass MVP (3-page PDF)</a>
