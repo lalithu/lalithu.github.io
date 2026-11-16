@@ -1,0 +1,20 @@
+import {build} from 'esbuild';
+import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+const project=fileURLToPath(new URL('../',import.meta.url));
+const repo=fileURLToPath(new URL('../../../',import.meta.url));
+const assets=repo+'assets/storytime-demo/';
+await mkdir(assets,{recursive:true});
+await build({entryPoints:[project+'web/app.js'],outfile:assets+'app.js',bundle:true,minify:true,platform:'browser',target:['es2022'],legalComments:'eof'});
+for(const file of ['styles.css','matcha.svg'])await copyFile(project+'web/'+file,assets+file);
+const html=await readFile(project+'web/index.html','utf8');
+await mkdir(repo+'pages',{recursive:true});
+const tracker="{% if jekyll.environment == 'production' and site.storytime_demo_visit_tracking %}<script defer src=\"{{ '/assets/js/storytime-demo-visits.js' | relative_url }}\"></script>{% endif %}";
+await writeFile(repo+'pages/storytime-demo.html','---\nlayout: null\npermalink: /demo/storytime/\ntitle: "Storytime — Local Proof demo"\n---\n'+html.replace('</body>',tracker+'</body>'));
+await mkdir(project+'dist/demo/storytime',{recursive:true});
+await mkdir(project+'dist/assets/storytime-demo',{recursive:true});
+await writeFile(project+'dist/demo/storytime/index.html',html);
+for(const file of ['app.js','styles.css','matcha.svg'])await copyFile(assets+file,project+'dist/assets/storytime-demo/'+file);
+console.log('Built /demo/storytime/ and assets/storytime-demo/');
+
+await copyFile(project+"node_modules/qrcode/license",assets+"QRCODE-LICENSE.txt");

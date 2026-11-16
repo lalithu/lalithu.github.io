@@ -67,3 +67,6 @@ exclude:
   - supabase
 
 timezone: America/New_York
+
+# Storytime demo visits use a separate private collector/table.
+storytime_demo_visit_tracking: true

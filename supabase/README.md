@@ -15,3 +15,20 @@ Location is best-effort country from [DB-IP Lite](https://db-ip.com/db/lite.php)
 ```sql
 delete from public.portfolio_visits where visited_at < now() - interval '30 days';
 ```
+
+## Storytime demo visits
+
+The separate `storytime_demo_visits` table and `track-storytime-demo-visit` function collect only `/demo/storytime/` page visits. Apply `202611160001_storytime_demo_visits.sql`, then deploy the function with JWT verification off. The general portfolio tracker excludes this path. The browser honors Global Privacy Control and Do Not Track and sends no payload or credentials. Demo codes, query parameters, and transaction events are not collected.
+
+```sql
+select visited_at at time zone 'America/New_York' as time_et, page_path, ip, location, device
+from public.storytime_demo_visits
+order by visited_at desc, id desc
+limit 100;
+```
+
+Origin checking is not authentication and does not stop spoofed requests. Rows are private; the browser cannot read them. A suggested 30-day retention query, scoped only to this new table:
+
+```sql
+delete from public.storytime_demo_visits where visited_at < now() - interval '30 days';
+```

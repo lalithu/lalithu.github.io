@@ -1,0 +1,6 @@
+import './build-pages.mjs';
+import {createServer} from 'node:http';
+import {readFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../dist/',import.meta.url));const port=Number(process.env.PORT||4317);
+createServer(async(req,res)=>{const pathname=new URL(req.url,'http://127.0.0.1').pathname;const allowed={'/demo/storytime/':'demo/storytime/index.html','/assets/storytime-demo/app.js':'assets/storytime-demo/app.js','/assets/storytime-demo/styles.css':'assets/storytime-demo/styles.css','/assets/storytime-demo/matcha.svg':'assets/storytime-demo/matcha.svg'};if(pathname==='/'){res.writeHead(302,{Location:'/demo/storytime/'});return res.end()}const file=allowed[pathname];if(!file){res.writeHead(404);return res.end('Not found')}try{const body=await readFile(root+file);res.writeHead(200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.svg')?'image/svg+xml':'text/html; charset=utf-8','Cache-Control':'no-store'});res.end(body)}catch{res.writeHead(500);res.end('Run npm start again to rebuild')}}).listen(port,'127.0.0.1',()=>console.log(`\nLocal Proof: http://127.0.0.1:${port}/demo/storytime/\nStatic simulation; no real payments. Ctrl+C to stop.\n`));

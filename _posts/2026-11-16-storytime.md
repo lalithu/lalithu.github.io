@@ -7,50 +7,50 @@ author: Lalith Uriti
 permalink: /blog/storytime/
 ---
 
-Storytime connects creators with local businesses offering experiences or products in exchange for visibility. I kept returning to one question: **Can a creator understand which collaborations they can access, and why?**
+Storytime connects local businesses with creators who visit and share their experiences. My core idea is to follow what happens next: **a follower engages with a recommendation, visits the business, and makes a purchase that can be matched back to the offer.**
 
-## Start with the uncertainty
+Then use that feedback to help merchants fill quiet periods with discounts shared by creators they approve.
 
-Two [App Store reviews](https://apps.apple.com/us/app/storytime-influencers/id6472387521) stood out: a May 31, 2026 review described difficult discovery; a July 16 review reported disappearing map opportunities after successful collaborations. These are individual reports, with no established cause or frequency. Later release notes added delivery versus in-person filtering. Basic filters already exist.
+[Try the interactive demo]({{ '/demo/storytime/' | relative_url }}) — no signup or installation. All purchases are simulated.
 
-I'd investigate explainable eligibility and personalized discovery. I'd ask creators to reproduce the confusing moment, then compare campaign availability, account data, and decision logs. A closed campaign, changed requirements, stale data, and a bug need different responses.
+## From engagement to a confirmed purchase
 
-## How I'd build it
+Storytime already describes creator matching, verified visits, posts, and campaign reporting in its [product overview](https://storytime.io/about). Its [August 2026 Ana Luisa case study](https://storytime.io/brands/success-stories/ana-luisa-30-percent-foot-traffic-increase) reports 30% higher foot traffic using door counts from two weeks before and after launch. That comparison doesn't establish end-to-end customer purchase attribution or incremental revenue. Storytime may already measure more internally.
 
-In [Lorca]({{ '/blog/lorca/' | relative_url }}), I separated model decisions from permission-controlled execution. Here, I'd apply the same habit: make the decision inspectable, then define what happens next.
+I'd explore one explicit chain:
 
-![Proposed eligibility workflow: campaign rules and authorized creator data feed a versioned decision, which returns an eligibility state and explanation before personalized ranking.]({{ '/assets/images/storytime/eligibility.svg' | relative_url }})
+1. A creator shares a merchant-approved offer through a link, QR code, or post containing a code.
+2. A follower opens the offer and visits the business.
+3. Staff record the creator code on the customer's order.
+4. A payment-provider or POS event confirms the transaction; the merchant sees the creator, offer, time, paid amount, and any refund together.
 
-1. **Define the decision.** A TypeScript function would accept campaign rules and authorized creator data, returning `eligible`, `ineligible`, or `pending`, with reason codes, rule version, and data timestamp. Missing data would stay pending. A synthetic `PROFILE_REFRESH_NEEDED` result would explain the next action.
-2. **Rank eligible offers.** Use stated interests, preferred neighborhoods, and availability. Explain each recommendation and let creators adjust preferences. Keep sensitive enforcement details private.
-3. **Replay changes.** Test synthetic cases where a campaign closes, requirements change, or account data expires. Keep enough decision history to explain why access changed. Separate a legitimate restriction from a failed refresh.
+![Proposed purchase attribution flow from a creator offer through an observed customer engagement and code redemption to a confirmed POS transaction.]({{ '/assets/images/storytime/purchase-verification.svg' | relative_url }})
 
-The [privacy policy](https://storytime.io/legal/privacy-policy) describes consent-based social insights and optional location collection. I'd start with explicit preferences and minimal retained data, without assuming background location access.
+Here, engagement means an observed offer open, not every like or passive view. A code-only purchase can identify an offer without proving an earlier engagement. Shared codes and forwarded links also limit attribution. I'd keep those distinctions visible.
 
-I'd prototype the decision function and explanation cards with synthetic campaigns and automated tests. **I haven't built this prototype.** I'd first ask creators whether they understand a decision and know what to do next, then trial it against the existing flow. I'd measure discovery time, collaboration acceptance, eligibility-related support tickets, and completed collaborations.
+## Turn quiet hours into controlled offers
 
-## Close the local loop
+A café with spare afternoon capacity could approve selected creators to share a discount valid from 2–5 PM, capped at twenty redemptions. A restaurant could target a slow service; a spa could release unfilled appointments.
 
-Storytime's [August 29, 2026 Ana Luisa case study](https://storytime.io/brands/success-stories/ana-luisa-30-percent-foot-traffic-increase) reports 30% higher foot traffic using door counts from two weeks after launch versus two weeks before. That comparison alone doesn't establish creator-linked purchases or incremental revenue. Missing public evidence isn't proof of missing functionality; Storytime may already measure purchases internally.
+![Merchant-controlled quiet-hour offers: select a time window, approve a creator, cap redemptions, and learn from matched purchases.]({{ '/assets/images/storytime/quiet-hour-offer.svg' | relative_url }})
 
-![Proposed Local Proof Loop: creator recommendation leads to consumer discovery, purchase or booking, transaction verification, and repeat visits. Outcome learning informs future recommendations.]({{ '/assets/images/storytime/local-proof-loop.svg' | relative_url }})
+The goal is profitable use of spare capacity. More revenue isn't automatically better: discounts need to cover variable costs and avoid unnecessarily replacing full-price purchases. I'd compare matched sales, refunds, contribution margin, and redemption times, then test repeat visits and incremental impact against a comparison group.
 
-I'd test one link in this **Local Proof Loop** with an opt-in booking or redemption integration. A comparison group would help assess incremental impact.
+## What I built, and what comes next
 
-Two other things I'd explore:
+The [click-through prototype]({{ '/demo/storytime/' | relative_url }}) demonstrates merchant approval, time windows, creator links and QR codes, in-store code redemption, purchase matching, and refunds. It runs on GitHub Pages with sample events stored in the visitor's browser. It does not verify real payments.
 
-- **Campaign reliability.** The [brand terms](https://storytime.io/legal/terms-brands) allow no-post outcomes when creators cannot honestly recommend an experience. I'd review existing status, private feedback, and resolution workflows with both sides, then improve unclear handoffs.
-- **Consumer discovery and storefronts.** A local feed could connect creator recommendations to time-sensitive restaurant or spa offers and locally fulfilled products. I'd validate consumer demand and merchant operations before building lightweight creator storefronts. This is a longer-term proposal.
+A production version needs a backend: merchant-authorized POS access, campaign and order identifiers, verified provider events, duplicate protection, refund reconciliation, and a shared redemption cap. I'd start with one POS integration and retain only the attribution data customers and merchants authorize, consistent with the [privacy policy](https://storytime.io/legal/privacy-policy).
 
-I want to work close to customers, help shape how people discover local businesses, and take responsibility for what I ship. I’d start with one concrete improvement: make eligibility decisions clear, test the explanations with creators, and measure whether they find relevant collaborations faster.
+I want to work close to customers, help shape how people discover local businesses, and take responsibility for what I ship. I'd start with one merchant, one creator, and one traceable purchase before expanding the workflow.
 
 ## Interesting threads explored while researching Storytime
 
-1. **Creator discovery & eligibility.** App Store complaints about disappearing offers, unclear eligibility, and discovery friction sent me toward explainable matching and transparent ranking. I'd investigate causes with creators before deciding what needs changing.
-2. **The Local Proof Loop.** I explored connecting recommendations to purchases, repeat visits, and measurable revenue. The public foot-traffic results I reviewed don't establish end-to-end purchase attribution or reveal everything Storytime measures internally.
-3. **Verifying purchases without friction.** I'd compare POS integrations, card-linked transactions, and permissioned email receipts with Hummingbirds' receipt-upload approach. Consent, merchant coverage, and matching accuracy would determine whether manual uploads could disappear. A payment alone doesn't prove influence.
-4. **Beyond influencer marketing.** I wondered about a three-sided marketplace for merchants, creators, and consumers: creator storefronts, local pickup, restaurant discounts, and last-minute spa openings that fill unused capacity. Shopify's commerce tools and ClassPass's capacity model are useful competitive context; demand still needs testing.
-5. **Engineering exploration.** Creator Compass is my proposed small TypeScript eligibility engine: structured reason codes, explainable ranking, synthetic test data, and automated tests. I'd use it to test whether creators understand decisions before attempting a live integration. It hasn't been built.
+1. **Creator discovery & eligibility.** App Store reports about disappearing offers initially led me toward explainable matching and transparent ranking. I'd still validate those experiences with creators; they don't establish a cause or the current product's behavior.
+2. **The Local Proof Loop.** The focus here is observed engagement → visit → matched purchase → repeat customer. Foot traffic is useful evidence, but the public case study doesn't establish that entire chain.
+3. **Verifying purchases without friction.** I compared POS integrations, card-linked transactions, and permissioned email receipts with Hummingbirds' receipt-upload approach. Merchant coverage, consent, and matching quality decide whether manual uploads can disappear.
+4. **Beyond influencer marketing.** Merchant-approved quiet-hour offers could connect merchants, creators, and consumers around spare capacity. Shopify's commerce tools and ClassPass's capacity model provide context; creator storefronts and broader discovery remain longer-term ideas to validate.
+5. **Engineering exploration.** Local Proof now demonstrates the purchase-and-offer flow in a browser. The earlier Creator Compass eligibility engine remains a separate, unbuilt proposal. Real transaction verification requires a backend and a payment-provider integration.
 
 Storytime sources: [Creator terms](https://storytime.io/legal/terms-creators) · [Brand terms](https://storytime.io/legal/terms-brands) · [Privacy](https://storytime.io/legal/privacy-policy) · [Data deletion](https://storytime.io/legal/data-deletion) · [Ana Luisa case study](https://storytime.io/brands/success-stories/ana-luisa-30-percent-foot-traffic-increase) · [Creator App Store](https://apps.apple.com/us/app/storytime-influencers/id6472387521) · [Signal](https://signal.storytime.io/pricing).
 
@@ -59,3 +59,5 @@ Purchase verification: [Square Orders API](https://developer.squareup.com/docs/o
 Marketplace context: [Shopify local pickup](https://help.shopify.com/en/manual/fulfillment/setup/delivery-methods/pickup-in-store) · [ClassPass on filling unused spots](https://classpass.com/partners/blog/tips-add-revenue-studio-gym).
 
 <a href="{{ '/assets/research/storytime/Storytime_Product_Diagnostic.pdf' | relative_url }}" download>Storytime — Product Diagnostic &amp; Creator Compass MVP (3-page PDF)</a>
+
+The PDF records the earlier eligibility-focused research; the interactive demo now focuses on purchase attribution and quiet-hour offers.

@@ -1,0 +1,7 @@
+{
+ "name":"storytime-local-proof", "version":"0.2.0", "private":true, "type":"module",
+ "description":"Creator-linked purchases and merchant-approved quiet-hour offers. A static GitHub Pages demonstration.",
+ "engines":{"node":">=22.13"},
+ "scripts":{"prestart":"node scripts/bootstrap.mjs","start":"node scripts/dev.mjs","build":"node scripts/build-pages.mjs","test":"node --experimental-strip-types --disable-warning=ExperimentalWarning --test tests/*.test.ts"},
+ "dependencies":{"qrcode":"1.5.4"},"devDependencies":{"esbuild":"0.25.12"}
+}

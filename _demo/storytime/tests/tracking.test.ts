@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+function run(file:string,path:string,flags={},origin='https://lalithu.github.io'){const calls:any[]=[];vm.runInNewContext(readFileSync(new URL('../../../assets/js/'+file,import.meta.url),'utf8'),{location:{origin,pathname:path},navigator:flags,fetch:(...a:any[])=>{calls.push(a);return Promise.resolve({})}});return calls;}
+test('demo visits use only the dedicated endpoint and send no demo payload',()=>{assert.equal(run('portfolio-visits.js','/demo/storytime/').length,0);assert.equal(run('portfolio-visits.js','/blog/storytime/').length,1);const calls=run('storytime-demo-visits.js','/demo/storytime/');assert.equal(calls.length,1);assert.ok(calls[0][0].endsWith('track-storytime-demo-visit'));assert.equal(calls[0][1].body,undefined);assert.equal(calls[0][1].credentials,'omit');});
+test('demo tracking respects page scope, local development, DNT and GPC',()=>{for(const path of ['/','/blog/storytime/','/demo/other/'])assert.equal(run('storytime-demo-visits.js',path).length,0);assert.equal(run('storytime-demo-visits.js','/demo/storytime/',{doNotTrack:'1'}).length,0);assert.equal(run('storytime-demo-visits.js','/demo/storytime/',{globalPrivacyControl:true}).length,0);assert.equal(run('storytime-demo-visits.js','/demo/storytime/',{},'http://127.0.0.1:4000').length,0);});
