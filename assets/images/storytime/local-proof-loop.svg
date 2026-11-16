@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="650" viewBox="0 0 600 650" role="img" aria-labelledby="title desc">
+<title id="title">The Local Proof Loop</title><desc id="desc">Strategic hypothesis, not confirmed missing functionality. Creator recommendations lead to consumer discovery, purchases or bookings, verified transactions, and repeat customers. Outcome learning informs future recommendations; attribution requires more than foot traffic.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#45645b"/></marker></defs>
+<style>text{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Arial,sans-serif;fill:#202b28}.label{font-size:18px;fill:#52665e}.heading{font-size:25px;font-weight:600}.body{font-size:21px}.strong{font-size:23px;font-weight:600}.line{fill:none;stroke:#45645b;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="600" height="650" rx="12" fill="#f6f8f6"/>
+<text x="32" y="39" text-anchor="start" class="label">LONGER-TERM HYPOTHESIS</text>
+<text x="32" y="76" text-anchor="start" class="heading">The Local Proof Loop</text>
+<rect x="72" y="102" width="456" height="78" rx="9" fill="#e9f0eb" stroke="#b8c8be"/>
+<text x="100" y="134" text-anchor="start" class="label">01</text>
+<text x="144" y="134" text-anchor="start" class="strong">Creator recommendation</text>
+<text x="144" y="161" text-anchor="start" class="label">A local experience worth sharing</text>
+<path class="line" d="M300 180 L300 201"/>
+<rect x="72" y="202" width="456" height="78" rx="9" fill="#fff" stroke="#b8c8be"/>
+<text x="100" y="234" text-anchor="start" class="label">02</text>
+<text x="144" y="234" text-anchor="start" class="strong">Consumer discovery</text>
+<text x="144" y="261" text-anchor="start" class="label">Find a relevant place or offer</text>
+<path class="line" d="M300 280 L300 301"/>
+<rect x="72" y="302" width="456" height="78" rx="9" fill="#fff" stroke="#b8c8be"/>
+<text x="100" y="334" text-anchor="start" class="label">03</text>
+<text x="144" y="334" text-anchor="start" class="strong">Purchase or booking</text>
+<text x="144" y="361" text-anchor="start" class="label">Choose a measurable action</text>
+<path class="line" d="M300 380 L300 401"/>
+<rect x="72" y="402" width="456" height="78" rx="9" fill="#fff" stroke="#b8c8be"/>
+<text x="100" y="434" text-anchor="start" class="label">04</text>
+<text x="144" y="434" text-anchor="start" class="strong">Verified transaction</text>
+<text x="144" y="461" text-anchor="start" class="label">Confirm an opt-in redemption</text>
+<path class="line" d="M300 480 L300 501"/>
+<rect x="72" y="502" width="456" height="78" rx="9" fill="#e9f0eb" stroke="#b8c8be"/>
+<text x="100" y="534" text-anchor="start" class="label">05</text>
+<text x="144" y="534" text-anchor="start" class="strong">Repeat customer</text>
+<text x="144" y="561" text-anchor="start" class="label">Observe a return visit</text>
+<path class="line" d="M528 541 H564 V141 H530"/>
+<text x="300" y="614" text-anchor="middle" class="body">Learn from outcomes; test incremental impact.</text>
+</svg>

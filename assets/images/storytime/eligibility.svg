@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="650" viewBox="0 0 600 650" role="img" aria-labelledby="title desc">
+<title id="title">Explain a decision before ranking offers</title><desc id="desc">Proposed design, not an existing implementation. Campaign rules and authorized creator data feed a versioned eligibility decision. Eligible offers are ranked by explicit preferences; restricted or pending results explain what happened and what to do next.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#45645b"/></marker></defs>
+<style>text{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Arial,sans-serif;fill:#202b28}.label{font-size:18px;fill:#52665e}.heading{font-size:25px;font-weight:600}.body{font-size:21px}.strong{font-size:23px;font-weight:600}.line{fill:none;stroke:#45645b;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="600" height="650" rx="12" fill="#f6f8f6"/>
+<text x="32" y="39" text-anchor="start" class="label">PROPOSED WORKFLOW</text>
+<text x="32" y="76" text-anchor="start" class="heading">Explain first. Then recommend.</text>
+<rect x="32" y="103" width="252" height="88" rx="9" fill="#fff" stroke="#b8c8be"/>
+<text x="158" y="140" text-anchor="middle" class="strong">Campaign rules</text>
+<text x="158" y="170" text-anchor="middle" class="label">Status · requirements</text>
+<rect x="316" y="103" width="252" height="88" rx="9" fill="#fff" stroke="#b8c8be"/>
+<text x="442" y="140" text-anchor="middle" class="strong">Creator data</text>
+<text x="442" y="170" text-anchor="middle" class="label">Authorized · timestamped</text>
+<path class="line" d="M158 191 V214 H300 V238"/><path d="M442 191 V214 H300" fill="none" stroke="#45645b" stroke-width="2"/>
+<rect x="82" y="239" width="436" height="96" rx="9" fill="#e9f0eb" stroke="#b8c8be"/>
+<text x="300" y="277" text-anchor="middle" class="strong">Versioned eligibility decision</text>
+<text x="300" y="309" text-anchor="middle" class="body">State + reason + data timestamp</text>
+<path class="line" d="M300 335 V361 H158 V389"/><path class="line" d="M300 361 H442 V389"/>
+<rect x="32" y="390" width="252" height="155" rx="9" fill="#fff" stroke="#b8c8be"/>
+<text x="158" y="427" text-anchor="middle" class="strong">Eligible</text>
+<text x="158" y="463" text-anchor="middle" class="body">Rank by preferences</text>
+<text x="158" y="496" text-anchor="middle" class="body">Explain the match</text>
+<text x="158" y="527" text-anchor="middle" class="label">Let creators adjust</text>
+<rect x="316" y="390" width="252" height="155" rx="9" fill="#fff" stroke="#b8c8be"/>
+<text x="442" y="427" text-anchor="middle" class="strong">Restricted / pending</text>
+<text x="442" y="463" text-anchor="middle" class="body">Explain the reason</text>
+<text x="442" y="496" text-anchor="middle" class="body">Show the next action</text>
+<text x="442" y="527" text-anchor="middle" class="label">Keep uncertainty visible</text>
+<text x="300" y="589" text-anchor="middle" class="label">Synthetic pending example</text>
+<text x="300" y="621" text-anchor="middle" class="body">Refresh your profile, then check again.</text>
+</svg>
