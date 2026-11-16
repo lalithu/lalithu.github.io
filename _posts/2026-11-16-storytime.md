@@ -24,7 +24,7 @@ I'd explore one explicit chain:
 3. Staff record the creator code on the customer's order.
 4. A payment-provider or POS event confirms the transaction; the merchant sees the creator, offer, time, paid amount, and any refund together.
 
-![Proposed purchase attribution flow from a creator offer through an observed customer engagement and code redemption to a confirmed POS transaction.]({{ '/assets/images/storytime/purchase-verification.svg' | relative_url }})
+<img src="{{ '/assets/images/storytime/purchase-verification.svg' | relative_url }}" alt="Proposed purchase attribution flow from a creator offer through an observed customer engagement and code redemption to a confirmed POS transaction." style="display: block; max-width: 100%; height: auto; margin: 1.5rem auto;">
 
 Here, engagement means an observed offer open, not every like or passive view. A code-only purchase can identify an offer without proving an earlier engagement. Shared codes and forwarded links also limit attribution. I'd keep those distinctions visible.
 
@@ -32,7 +32,7 @@ Here, engagement means an observed offer open, not every like or passive view. A
 
 A café with spare afternoon capacity could approve selected creators to share a discount valid from 2–5 PM, capped at twenty redemptions. A restaurant could target a slow service; a spa could release unfilled appointments.
 
-![Merchant-controlled quiet-hour offers: select a time window, approve a creator, cap redemptions, and learn from matched purchases.]({{ '/assets/images/storytime/quiet-hour-offer.svg' | relative_url }})
+<img src="{{ '/assets/images/storytime/quiet-hour-offer.svg' | relative_url }}" alt="Merchant-controlled quiet-hour offers: select a time window, approve a creator, cap redemptions, and learn from matched purchases." style="display: block; max-width: 100%; height: auto; margin: 1.5rem auto;">
 
 The goal is profitable use of spare capacity. More revenue isn't automatically better: discounts need to cover variable costs and avoid unnecessarily replacing full-price purchases. I'd compare matched sales, refunds, contribution margin, and redemption times, then test repeat visits and incremental impact against a comparison group.
 
