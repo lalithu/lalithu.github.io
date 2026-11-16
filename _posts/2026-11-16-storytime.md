@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Storytime: Closing the Loop on Local Influence"
-date: 2026-11-16 00:00:00 -0500
+date: 2026-11-16 12:21:24 -0500
+date_has_time: true
 author: Lalith Uriti
 permalink: /blog/storytime/
 ---
