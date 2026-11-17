@@ -38,12 +38,31 @@
   }
 }
 
+.portfolio-hero {
+  margin: 0 0 12px;
+}
+
 .portfolio-photo {
   display: block;
   width: 100%;
   height: auto;
-  margin-bottom: clamp(30px, 6vw, 60px);
   border-radius: 10px;
+}
+
+.portfolio-photo-caption {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 14px;
+  color: $portfolio-accent;
+  font: 12px/1.5 $mono-font-family;
+  letter-spacing: 0.025em;
+  text-align: right;
+
+  svg {
+    flex-shrink: 0;
+  }
 }
 
 .portfolio-eyebrow {

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Info Sec 3200 SQL Injection Lab Audit with Sol 6.1"
-date: 2026-11-16 18:35:00 -0500
+date: 2026-11-16 20:46:24 -0500
 date_has_time: true
 author: Lalith Uriti
 permalink: /blog/inspecting-sqli-vm/
