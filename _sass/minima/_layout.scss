@@ -6,15 +6,22 @@
   top: 0;
   z-index: 1000;
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 0.75rem 0;
+  background-color: var(--nav-glass-solid, #fdfdfd);
 
-  background: rgba(255, 255, 255, 0.55); /* soft translucent white */
-  border-bottom: 1px solid rgba(200, 200, 200, 0.35);
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    background: var(--nav-glass-fill, rgba(252, 252, 255, 0.2));
+    -webkit-backdrop-filter: var(--nav-glass-filter, blur(18px) saturate(165%));
+    backdrop-filter: var(--nav-glass-filter, blur(18px) saturate(165%));
+  }
 
-  padding: 0.75rem 0; /* replaces your tall min-height */
+  @media (prefers-reduced-transparency: reduce) {
+    background: var(--nav-glass-solid, #fdfdfd);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
 }
-
 
 .site-nav {
   display: flex;
@@ -38,7 +45,12 @@
 .site-footer {
   padding: 0 0 $spacing-unit;
 
-  p {
+  .footer-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 16px;
     max-width: 716px;
     margin: 0 auto;
     padding-top: $spacing-unit / 2;
@@ -49,12 +61,55 @@
 }
 
 
+.footer-details p {
+  margin: 0;
+}
+
+.theme-options:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.theme-options {
+  label {
+    position: relative;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  span {
+    display: block;
+    padding: 4px 8px;
+    border: 1px solid var(--night-border, #{$grey-color-light});
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input:checked + span {
+    color: var(--night-accent, #{$portfolio-accent});
+    border-color: currentColor;
+  }
+
+  input:focus-visible + span {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
 /**
  * Page content
  */
 .page-content {
   padding: $spacing-unit 0;
   flex: 1;
+}
+
+.page-content-home {
+  padding-top: $spacing-unit / 3;
 }
 
 .page-heading {

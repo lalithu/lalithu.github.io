@@ -42,3 +42,20 @@
 }
 
 @import "minima/dark";
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+  animation-timing-function: ease-in-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .theme-transition-fallback {
+    body,
+    .site-header,
+    a,
+    .theme-options span {
+      transition: background-color 260ms ease-in-out, color 260ms ease-in-out, border-color 260ms ease-in-out;
+    }
+  }
+}
