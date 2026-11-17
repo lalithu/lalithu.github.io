@@ -1,0 +1,250 @@
+[
+  {
+    "slug": "contact-sheet",
+    "file": "contact-sheet.webp",
+    "original": "originals/contact-sheet.jpg",
+    "width": 960,
+    "height": 1680,
+    "caption": "Sixteen sampled frames from the 449-frame source. The changing view includes phone movement, passenger occlusion and glare."
+  },
+  {
+    "slug": "windshield",
+    "file": "windshield.webp",
+    "original": "originals/windshield.jpg",
+    "width": 1620,
+    "height": 1350,
+    "caption": "Windshield crops at one-second intervals. Coordinate grids helped select conservative building and tree regions."
+  },
+  {
+    "slug": "wheel",
+    "file": "wheel.webp",
+    "original": "originals/wheel.jpg",
+    "width": 1620,
+    "height": 1700,
+    "caption": "Wheel crops with raised display brightness for inspection. Hands and the passenger obscure the wheel during much of the maneuver."
+  },
+  {
+    "slug": "frame-00",
+    "file": "frame-00.webp",
+    "original": "originals/frame-00.jpg",
+    "width": 540,
+    "height": 960,
+    "caption": "Source frame near 0 seconds. Full portrait view retained for visibility review."
+  },
+  {
+    "slug": "frame-02",
+    "file": "frame-02.webp",
+    "original": "originals/frame-02.jpg",
+    "width": 540,
+    "height": 960,
+    "caption": "Source frame near 2 seconds. Full portrait view retained for visibility review."
+  },
+  {
+    "slug": "frame-04",
+    "file": "frame-04.webp",
+    "original": "originals/frame-04.jpg",
+    "width": 540,
+    "height": 960,
+    "caption": "Source frame near 4 seconds. Full portrait view retained for visibility review."
+  },
+  {
+    "slug": "frame-06",
+    "file": "frame-06.webp",
+    "original": "originals/frame-06.jpg",
+    "width": 540,
+    "height": 960,
+    "caption": "Source frame near 6 seconds. Full portrait view retained for visibility review."
+  },
+  {
+    "slug": "frame-08",
+    "file": "frame-08.webp",
+    "original": "originals/frame-08.jpg",
+    "width": 540,
+    "height": 960,
+    "caption": "Source frame near 8 seconds. Full portrait view retained for visibility review."
+  },
+  {
+    "slug": "frame-10",
+    "file": "frame-10.webp",
+    "original": "originals/frame-10.jpg",
+    "width": 540,
+    "height": 960,
+    "caption": "Source frame near 10 seconds. Full portrait view retained for visibility review."
+  },
+  {
+    "slug": "frame-12",
+    "file": "frame-12.webp",
+    "original": "originals/frame-12.jpg",
+    "width": 540,
+    "height": 960,
+    "caption": "Source frame near 12 seconds. Full portrait view retained for visibility review."
+  },
+  {
+    "slug": "frame-14",
+    "file": "frame-14.webp",
+    "original": "originals/frame-14.jpg",
+    "width": 540,
+    "height": 960,
+    "caption": "Source frame near 14 seconds. Full portrait view retained for visibility review."
+  },
+  {
+    "slug": "map-calibration",
+    "file": "map-calibration.webp",
+    "original": "originals/map-calibration.png",
+    "width": 1800,
+    "height": 900,
+    "caption": "Six violet ground controls fit the reference; two amber controls were held out. The comparison uses Apple Maps and the City of Charlotte aerial."
+  },
+  {
+    "slug": "tracking",
+    "file": "tracking.webp",
+    "original": "originals/tracking.png",
+    "width": 1760,
+    "height": 1440,
+    "caption": "Accepted tracks, round-trip error, pixel displacement and experimental wheel-patch increments. The shaded interval is excluded."
+  },
+  {
+    "slug": "hybrid",
+    "file": "hybrid.webp",
+    "original": "originals/hybrid.png",
+    "width": 1800,
+    "height": 1029,
+    "caption": "The current best estimate and alternative fits. Amber marks the model bridge through 7.4\u201310.6 seconds."
+  },
+  {
+    "slug": "holdout-crops",
+    "file": "holdout-crops.webp",
+    "original": "originals/holdout-crops.png",
+    "width": 1800,
+    "height": 360,
+    "caption": "Enlarged sign and pole crops used for independent endpoint labels at 0, 2 and 4 seconds."
+  },
+  {
+    "slug": "calibration-grid",
+    "file": "calibration-grid.webp",
+    "original": "originals/calibration-grid.png",
+    "width": 1800,
+    "height": 900,
+    "caption": "Coordinate grids on the two overhead images used to pick ground-level correspondences."
+  },
+  {
+    "slug": "calibration-north",
+    "file": "calibration-north.webp",
+    "original": "originals/calibration-north.png",
+    "width": 1800,
+    "height": 788,
+    "caption": "Closer comparison of the northern checkerboard crossings and stop markings."
+  },
+  {
+    "slug": "calibration-south",
+    "file": "calibration-south.webp",
+    "original": "originals/calibration-south.png",
+    "width": 1800,
+    "height": 788,
+    "caption": "Closer comparison of the southern paint markings. Elevated roofs were excluded from the controls."
+  },
+  {
+    "slug": "rejected-matches",
+    "file": "rejected-matches.webp",
+    "original": "originals/rejected-matches.jpg",
+    "width": 1800,
+    "height": 776,
+    "caption": "Rejected automatic SIFT matches. The small inlier set included a duplicate and an implausible correspondence."
+  },
+  {
+    "slug": "rejected-warp",
+    "file": "rejected-warp.webp",
+    "original": "originals/rejected-warp.jpg",
+    "width": 1800,
+    "height": 1800,
+    "caption": "Rejected automatic warp over the city aerial. This image records a failed alignment."
+  },
+  {
+    "slug": "initial-dark-ui",
+    "file": "initial-dark-ui.webp",
+    "original": "originals/initial-dark-ui.png",
+    "width": 1440,
+    "height": 900,
+    "caption": "Early dark UI mockup with illustrative motion, before the portfolio light theme and model fit."
+  },
+  {
+    "slug": "light-ui",
+    "file": "light-ui.webp",
+    "original": "originals/light-ui.png",
+    "width": 1440,
+    "height": 900,
+    "caption": "Light-theme prototype after switching to the actual Apple Maps reference."
+  },
+  {
+    "slug": "mobile-ui",
+    "file": "mobile-ui.webp",
+    "original": "originals/mobile-ui.png",
+    "width": 390,
+    "height": 844,
+    "caption": "Early mobile layout check, with footage stacked above the map and telemetry."
+  },
+  {
+    "slug": "artwork-ui",
+    "file": "artwork-ui.webp",
+    "original": "originals/artwork-ui.png",
+    "width": 1440,
+    "height": 900,
+    "caption": "The supplied car artwork replacing the original schematic silhouette."
+  },
+  {
+    "slug": "cv-review-ui",
+    "file": "cv-review-ui.webp",
+    "original": "originals/cv-review-ui.png",
+    "width": 1440,
+    "height": 1000,
+    "caption": "The separate diagnostic view used to inspect actual CV tracks and map controls."
+  },
+  {
+    "slug": "current-ui",
+    "file": "current-ui.webp",
+    "original": "originals/current-ui.png",
+    "width": 1440,
+    "height": 1440,
+    "caption": "Current synced replay with independent heading and velocity, provenance, uncertainty and bottom telemetry."
+  },
+  {
+    "slug": "whatif-ui",
+    "file": "whatif-ui.webp",
+    "original": "originals/whatif-ui.png",
+    "width": 1440,
+    "height": 1440,
+    "caption": "What-if controls and editable route anchors used to explore assumptions."
+  },
+  {
+    "slug": "city-aerial",
+    "file": "city-aerial.webp",
+    "original": "originals/city-aerial.png",
+    "width": 1800,
+    "height": 1800,
+    "caption": "The georeferenced 2024 City of Charlotte aerial covering the intersection."
+  },
+  {
+    "slug": "clean-map",
+    "file": "clean-map.webp",
+    "original": "originals/clean-map.png",
+    "width": 1800,
+    "height": 1164,
+    "caption": "Owner-supplied Apple Maps screenshot used for private visual reference and alignment."
+  },
+  {
+    "slug": "route-sketch",
+    "file": "route-sketch.webp",
+    "original": "originals/route-sketch.png",
+    "width": 786,
+    "height": 1800,
+    "caption": "Owner-supplied blue path sketch used as editable soft route constraints."
+  },
+  {
+    "slug": "car-artwork",
+    "file": "car-artwork.webp",
+    "original": "originals/car-artwork.png",
+    "width": 400,
+    "height": 1000,
+    "caption": "Owner-supplied racing-car artwork used as a visual proxy at production RC F body scale."
+  }
+]

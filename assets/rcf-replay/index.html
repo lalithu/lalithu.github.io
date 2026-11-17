@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>RC F / Dynamics Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="replay.js"></script>
+<script src="embed-resize.js" defer></script>
+</head>
+<body>
+<main class="workspace">
+  <header class="masthead">
+    <div class="case">2016 LEXUS RC F <span></span> CHARLOTTE, NC</div>
+    <div class="mast-row">
+      <div>
+        <h1>RC F <span>/</span> Dynamics Lab</h1>
+        <p class="location">E Brooklyn Village Avenue <b>×</b> S Brevard Street</p>
+      </div>
+      <div class="status" id="model-status" role="status">Loading reconstruction…</div>
+    </div>
+  </header>
+
+  <div class="view-switch">
+    <div class="modes reconstruction-modes" role="group" aria-label="Reconstruction mode">
+      <button type="button" data-view="observed" aria-pressed="false">Observed</button>
+      <button type="button" data-view="estimate" aria-pressed="true">Best Estimate</button>
+      <button type="button" data-view="whatif" aria-pressed="false">What-if</button>
+    </div>
+    <label class="solution-picker">Solution <select id="solution"></select></label>
+    <a href="review.html" class="diagnostic-link">Original CV diagnostics ↗</a>
+  </div>
+  <p class="model-context" id="model-context">Loading assumptions and model alternatives…</p>
+  <div class="views">
+    <section class="panel footage" aria-labelledby="footage-title">
+      <div class="panel-header">
+        <h2 id="footage-title">Cabin footage</h2>
+        <label class="file-button">Open local video<input type="file" id="file" accept="video/*,.mov"></label>
+      </div>
+      <div class="stage">
+        <div class="portrait" id="portrait">
+          <video id="video" playsinline preload="auto" aria-label="Original cabin footage"></video>
+          <svg id="overlay" aria-hidden="true" hidden></svg>
+          <span id="overlay-label" class="overlay-label" hidden>Observed image features</span>
+        </div>
+        <div class="media-status" id="media-status" role="status">Loading original footage…</div>
+      </div>
+      <div class="overlay-bar">
+        <div class="modes" role="group" aria-label="Footage overlay">
+          <button type="button" data-overlay="none" aria-pressed="true">None</button>
+          <button type="button" data-overlay="steering" aria-pressed="false">Steering</button>
+          <button type="button" data-overlay="exterior" aria-pressed="false">Exterior features</button>
+          <button type="button" data-overlay="flow" aria-pressed="false">Optical flow</button>
+          <button type="button" data-overlay="combined" aria-pressed="false">Combined</button>
+        </div>
+        <p id="overlay-note">Original footage · overlay off</p>
+      </div>
+    </section>
+
+    <section class="panel overhead" aria-labelledby="map-title">
+      <div class="panel-header">
+        <h2 id="map-title">Intersection replay</h2>
+        <span class="subtle mono">APPLE MAPS REFERENCE</span>
+      </div>
+      <div class="map-stage">
+        <svg id="map" viewBox="1050 700 1680 1160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Apple Maps satellite screenshot with the approximate owner-supplied RC F route">
+          <defs>
+            <marker id="amber-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 8 4 0 8 2 4Z" fill="#ffca78"/></marker>
+            <marker id="blue-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 8 4 0 8 2 4Z" fill="#98d7ff"/></marker>
+          </defs>
+          <image id="map-image" width="4112" height="2658"/>
+          <g id="map-animation" visibility="hidden">
+            <path id="road-envelope" class="road-envelope" hidden/>
+            <path id="uncertainty-envelope" class="uncertainty-envelope"/>
+            <path id="route" class="route-halo"/>
+            <path id="route-outline" class="route-outline"/>
+            <path id="bridge-route" class="bridge-route"/>
+            <path id="trail"/>
+            <g id="anchors" hidden></g>
+            <g id="pose">
+              <path id="slip-arc" fill="none" stroke="#fff2b6" stroke-width="3"/>
+              <line id="velocity" x1="0" y1="0" x2="0" y2="0" stroke="#98d7ff" stroke-width="4" marker-end="url(#blue-arrow)"/>
+              <g id="heading">
+                <line x1="2.7" x2="6.5" y1="0" y2="0" stroke="#ffca78" stroke-width=".17" marker-end="url(#amber-arrow)"/>
+                <image id="car-image" class="car" href="owner-car.png" x="-1.04" y="-2.78" width="2.08" height="5.56" transform="rotate(90)" aria-label="Owner-supplied car artwork scaled to the RC F body reference"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <div class="media-status" id="map-status" role="status">Loading the Apple Maps screenshot…</div>
+        <span class="map-attribution" id="map-attribution" hidden>Apple Maps · screenshot reference</span>
+      </div>
+      <div class="map-footer">
+        <div class="legend"><span><i class="amber"></i> Body heading</span><span><i class="blue"></i> Travel direction</span><span><i class="dashed"></i> Estimated path</span></div>
+        <span class="subtle"><span id="map-kind">Estimated · assumption-led</span></span>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel assumptions-panel" id="whatif-panel" hidden aria-labelledby="whatif-title">
+    <div class="panel-header"><h2 id="whatif-title">What-if assumptions</h2><span class="subtle">Assumed · drag Entry, Loop or Exit on the map, or use the controls</span></div>
+    <div class="assumption-controls" id="assumption-controls"></div>
+    <div class="assumption-actions"><button type="button" id="refit">Refit trajectory</button><button type="button" id="reset-model">Reset to selected solution</button><button type="button" id="export-model">Export scenario</button><span id="edit-history" class="subtle"></span></div>
+  </section>
+  <section class="panel telemetry" aria-labelledby="telemetry-title">
+    <div class="panel-header">
+      <h2 id="telemetry-title">Telemetry</h2>
+      <span class="subtle mono" id="telemetry-kind">ESTIMATED · CONDITIONAL ON ASSUMPTIONS</span>
+    </div>
+    <div class="metrics" id="metrics"></div>
+    <div class="timeline">
+      <div class="transport">
+        <button type="button" class="play" id="play" aria-label="Play" title="Play or pause (Space)">▶</button>
+        <button type="button" id="back" aria-label="Step back one nominal frame" title="Previous frame (Left arrow)">❮</button>
+        <button type="button" id="next" aria-label="Step forward one nominal frame" title="Next frame (Right arrow)">❯</button>
+        <label><span class="sr-only">Playback rate</span><select id="rate" aria-label="Playback rate"><option value=".25">0.25×</option><option value=".5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
+        <button type="button" id="audio" aria-label="Mute audio" aria-pressed="false">Audio</button>
+      </div>
+      <div class="scrub">
+        <label for="scrubber" class="sr-only">Playback position</label>
+        <input type="range" id="scrubber" min="0" max="15" step=".001" value="0">
+        <div class="ticks" id="ticks"></div>
+      </div>
+      <div class="time mono"><output id="time">00:00.00</output><span id="frame">Frame —</span></div>
+    </div>
+    <div class="model-summary" id="model-summary"></div>
+    <div class="trace-grid">
+      <figure><figcaption>Velocity <span>mph · envelope across plausible alternatives</span></figcaption><svg id="speed-graph" viewBox="0 0 500 175" role="img" aria-label="Estimated speed over the video timeline with model-alternative envelope"></svg></figure>
+      <figure><figcaption>Yaw rate <span>deg/s · positive counterclockwise</span></figcaption><svg id="yaw-graph" viewBox="0 0 500 175" role="img" aria-label="Estimated yaw rate over the video timeline with model-alternative envelope"></svg></figure>
+    </div>
+    <p class="factory-reference">Observed reference · 2016 RC F · 4.705 × 1.845 m · 2.730 m wheelbase · 1,795 kg curb mass · RWD, 8-speed · 467 hp / 389 lb-ft factory peak. Event torque Unavailable. <a href="https://media.lexus.ca/content/dam/media-lexus/general/spec-sheets/16RCF_E.pdf">Lexus source ↗</a></p>
+  </section>
+</main>
+<dialog id="inspector" aria-labelledby="inspector-title">
+  <form method="dialog"><button class="close" aria-label="Close evidence inspector">×</button></form>
+  <p class="dialog-kicker mono">HOW THIS WAS ESTIMATED</p>
+  <h2 id="inspector-title"></h2>
+  <div class="inspector-kind" id="inspector-kind"></div>
+  <dl id="inspector-details"></dl>
+</dialog>
+</body>
+</html>

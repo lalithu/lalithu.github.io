@@ -1,0 +1,17 @@
+.rcf-embed { position:relative; border:1px solid #dedede; border-radius:10px; margin:28px 0 16px; overflow:hidden; background:#fafafa; }
+.rcf-embed .rcf-replay-poster { width:100%; height:380px; object-fit:cover; object-position:top; opacity:.85; display:block; }
+.rcf-load-replay { position:absolute; bottom:22px; left:50%; transform:translateX(-50%); padding:12px 18px; border:1px solid #5856d6; border-radius:6px; background:#5856d6; color:white; white-space:nowrap; font:13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; cursor:pointer; box-shadow:0 3px 15px #0002; }
+.rcf-load-replay:focus-visible { outline:2px solid #111; outline-offset:4px; }
+.rcf-embed iframe { width:100%; height:1400px; border:0; display:block; }
+.rcf-embed [hidden] { display:none !important; }
+.rcf-figure { margin:25px 0; }
+.rcf-figure img { display:block; width:100%; height:auto; border:1px solid #e5e5e5; border-radius:6px; }
+.rcf-figure figcaption,.rcf-caption { margin-top:8px; color:#666; font:12px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.rcf-frame-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; align-items:start; }
+.rcf-frame-grid .rcf-figure { margin:10px 0; }
+.rcf-frame-grid .rcf-figure img { max-height:540px; object-fit:contain; background:#fafafa; }
+.rcf-evidence { border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; padding:10px 0; margin:22px 0; }
+.rcf-evidence + .rcf-evidence { border-top:0; }
+.rcf-evidence summary { cursor:pointer; color:#5856d6; font:13px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; padding:4px 0; }
+.rcf-evidence video { width:100%; max-height:620px; background:#fafafa; }
+@media(max-width:600px) { .rcf-frame-grid { grid-template-columns:1fr; } .rcf-embed .rcf-replay-poster { height:300px; } .rcf-load-replay { font-size:12px; padding:11px 13px; } }
