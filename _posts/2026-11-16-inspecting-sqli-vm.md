@@ -13,7 +13,7 @@ The lab was intentionally vulnerable. The audit traced those vulnerabilities to 
 
 <figure style="max-width: 900px; margin: 2rem auto;">
   <a href="{{ '/assets/images/sqli-vm/utm-netbeans.png' | relative_url }}"><img src="{{ '/assets/images/sqli-vm/utm-netbeans.png' | relative_url }}" alt="UTM running the SQLi Windows VM, with the SQLInjection project open in NetBeans and deployment output pointing to localhost:8080." width="1616" height="1284" style="display: block; width: 100%; height: auto; border: 1px solid #e5e5e5;" /></a>
-  <figcaption style="margin-top: 0.65rem; line-height: 1.5; color: var(--night-muted, #666);">The supplied Windows VM running in UTM. NetBeans shows the SQLInjection project and its local deployment URL. Click either screenshot to view it at full size.</figcaption>
+  <figcaption style="margin-top: 0.65rem; line-height: 1.5; color: #666;">The supplied Windows VM running in UTM. NetBeans shows the SQLInjection project and its local deployment URL. Click either screenshot to view it at full size.</figcaption>
 </figure>
 
 ## Inspecting the disk offline
@@ -22,7 +22,7 @@ The application ran inside a Windows guest in UTM. NetBeans showed the project a
 
 <figure style="max-width: 900px; margin: 2rem auto;">
   <a href="{{ '/assets/images/sqli-vm/utm-project-source.png' | relative_url }}"><img src="{{ '/assets/images/sqli-vm/utm-project-source.png' | relative_url }}" alt="NetBeans project properties showing C:\Users\test\Downloads\SQLInjection as the project folder and web\WEB-INF\classes as the Java source package folder." width="1610" height="1290" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #e5e5e5;" /></a>
-  <figcaption style="margin-top: 0.65rem; line-height: 1.5; color: var(--night-muted, #666);">The project properties confirmed where the files lived in the guest: the project in Downloads, web pages under <code>web</code>, and Java sources under <code>web\WEB-INF\classes</code>.</figcaption>
+  <figcaption style="margin-top: 0.65rem; line-height: 1.5; color: #666;">The project properties confirmed where the files lived in the guest: the project in Downloads, web pages under <code>web</code>, and Java sources under <code>web\WEB-INF\classes</code>.</figcaption>
 </figure>
 
 We extracted a separate QCOW2 disk from the original `SQLi-UTM.tar.gz` archive and read it with Dissect's Python libraries. We didn't boot that copy or mount it for writes, and my current VM stayed untouched.

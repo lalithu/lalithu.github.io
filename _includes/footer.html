@@ -1,13 +1,6 @@
 <footer class="site-footer">
   <div class="wrapper">
-    <div class="footer-details">
-      <p>&copy; {{ site.copyright | default: site.title | escape }} <time id="copyright-date" datetime="{{ 'now' | date: '%Y-%m' }}">{{ 'now' | date: '%B %Y' }}</time> · <a href="{{ '/privacy/' | relative_url }}">Privacy</a></p>
-      <div class="theme-options" role="group" aria-label="Color theme" hidden>
-        <label><input type="radio" name="portfolio-theme" value="system"><span>System</span></label>
-        <label><input type="radio" name="portfolio-theme" value="light"><span>Light</span></label>
-        <label><input type="radio" name="portfolio-theme" value="dark"><span>Dark</span></label>
-      </div>
-    </div>
+    <p>&copy; {{ site.copyright | default: site.title | escape }} <time id="copyright-date" datetime="{{ 'now' | date: '%Y-%m' }}">{{ 'now' | date: '%B %Y' }}</time> · <a href="{{ '/privacy/' | relative_url }}">Privacy</a></p>
   </div>
 </footer>
 <script>
