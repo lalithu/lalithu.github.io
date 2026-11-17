@@ -1,0 +1,2 @@
+dissect.target==3.23.1
+dissect.hypervisor==3.19.0
