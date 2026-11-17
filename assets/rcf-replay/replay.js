@@ -12,12 +12,9 @@ const modeButtons = [...document.querySelectorAll("[data-overlay]")];
 let duration = 14.97;
 let nominalFps = 30;
 let mediaReady = false;
-let demoPlaying = false;
-let demoTime = 0;
-let previousTick = 0;
+let animationUsesVideoFrames = false;
+let loadingTimer;
 let animation = null;
-let fileUrl;
-let source = "";
 let mode = "combined";
 let shownFrame = null;
 let sourceMatches = false;
@@ -56,7 +53,7 @@ function formatTime(time) {
   return String(Math.floor(centis / 6000)).padStart(2, "0") + ":" +
     String(Math.floor(centis / 100) % 60).padStart(2, "0") + "." + String(centis % 100).padStart(2, "0");
 }
-function clock() { return mediaReady ? video.currentTime : demoTime; }
+function clock() { return video.currentTime || 0; }
 function indexAt(rows, time) {
   let lower = 0;
   let upper = rows.length - 1;
@@ -398,88 +395,78 @@ function renderTicks() {
 }
 
 function seek(time) {
-  const target = Math.min(duration, Math.max(0, time));
-  if (mediaReady) video.currentTime = target;
-  else demoTime = target;
-  render(target);
+  if (!mediaReady) return;
+  video.currentTime = Math.min(duration, Math.max(0, time));
+  render(video.currentTime);
 }
 
 function updatePlayButton() {
-  const playing = mediaReady ? !video.paused && !video.ended : demoPlaying;
+  const playing = !video.paused && !video.ended;
   play.textContent = playing ? "❚❚" : "▶";
   play.setAttribute("aria-label", playing ? "Pause" : "Play");
 }
-
-function schedule() {
-  if (animation !== null) return;
-  if (mediaReady) {
-    if (video.paused || video.ended) return;
-    if ("requestVideoFrameCallback" in video) {
-      animation = video.requestVideoFrameCallback((_now, frame) => {
-        animation = null;
-        if (!video.seeking) render(frame.mediaTime);
-        schedule();
-      });
-      return;
-    }
-  } else if (!demoPlaying) return;
-
-  animation = requestAnimationFrame((now) => {
-    animation = null;
-    if (!mediaReady && demoPlaying) {
-      demoTime = Math.min(duration, demoTime + (now - previousTick) / 1000 * Number(rate.value));
-      previousTick = now;
-      if (demoTime >= duration) demoPlaying = false;
-    }
-    render();
-    updatePlayButton();
-    schedule();
-  });
+function showMediaStatus(message, action = "Play video") {
+  mediaStatus.hidden = false;
+  byId("media-message").textContent = message;
+  byId("media-retry").textContent = action;
 }
-
+function clearLoadingTimer() { clearTimeout(loadingTimer); }
+function watchLoading() {
+  clearLoadingTimer();
+  loadingTimer = setTimeout(() => {
+    showMediaStatus("Video is taking longer to load. Tap to try again.", "Retry video");
+  }, 12000);
+}
+function schedule() {
+  if (animation !== null || !mediaReady || video.paused || video.ended) return;
+  animationUsesVideoFrames = "requestVideoFrameCallback" in video;
+  if (animationUsesVideoFrames) {
+    animation = video.requestVideoFrameCallback((_now, frame) => {
+      animation = null;
+      if (!video.seeking) render(frame.mediaTime);
+      schedule();
+    });
+  } else {
+    animation = requestAnimationFrame(() => {
+      animation = null;
+      render();
+      schedule();
+    });
+  }
+}
 function cancelAnimation() {
   if (animation === null) return;
-  if (mediaReady && "cancelVideoFrameCallback" in video) video.cancelVideoFrameCallback(animation);
+  if (animationUsesVideoFrames) video.cancelVideoFrameCallback(animation);
   else cancelAnimationFrame(animation);
   animation = null;
 }
-
-async function togglePlay() {
-  if (mediaReady) {
-    if (!video.paused) {
-      video.pause();
-      return;
-    }
-    if (video.ended) seek(0);
-    try {
-      await video.play();
-    } catch {
-      mediaStatus.hidden = false;
-      mediaStatus.textContent = "Playback could not start. Try opening the local video again.";
-    }
-    return;
+async function startVideo(retry = false) {
+  // Call play directly in the tap handler, even before iOS loads metadata.
+  if (video.error || retry) video.load();
+  if (video.ended) video.currentTime = 0;
+  showMediaStatus("Loading video…", "Retry video");
+  watchLoading();
+  try { await video.play(); }
+  catch (error) {
+    clearLoadingTimer();
+    if (error.name !== "AbortError") showMediaStatus("Tap to play the video.");
+    updatePlayButton();
   }
-  demoPlaying = !demoPlaying;
-  if (demoPlaying && demoTime >= duration) seek(0);
-  previousTick = performance.now();
-  if (demoPlaying) schedule();
-  else cancelAnimation();
-  updatePlayButton();
 }
-
+function togglePlay() {
+  if (!video.paused && !video.ended) video.pause();
+  else startVideo();
+}
 function setSource(url, fps) {
   sourceMatches = false;
   cancelAnimation();
   video.pause();
-  source = url;
   mediaReady = false;
-  demoPlaying = false;
-  demoTime = 0;
-  duration = 15;
+  duration = 14.97;
   nominalFps = fps;
-  mediaStatus.hidden = false;
-  mediaStatus.textContent = "Loading local footage…";
+  showMediaStatus("Tap to play the cabin footage.");
   video.src = url;
+  video.load();
   renderTicks();
   render();
   updatePlayButton();
@@ -490,23 +477,25 @@ video.addEventListener("loadedmetadata", () => {
   cancelAnimation();
   mediaReady = true;
   duration = video.duration;
-  sourceMatches = nominalFps === 30 && Math.abs(duration - 14.97) < .1 && ((video.videoWidth === 2160 && video.videoHeight === 3840) || (video.videoWidth === 1080 && video.videoHeight === 1920));
+  sourceMatches = nominalFps === 30 && Math.abs(duration - 14.97) < .1 && ((video.videoWidth === 2160 && video.videoHeight === 3840) || (video.videoWidth === 1080 && video.videoHeight === 1920) || (video.videoWidth === 720 && video.videoHeight === 1280));
   if (!sourceMatches) byId("model-status").textContent = "Unavailable · this source differs from the analysed clip";
   portrait.style.setProperty("--video-ratio", `${video.videoWidth} / ${video.videoHeight}`);
   video.playbackRate = Number(rate.value);
   renderTicks();
   render();
 });
-video.addEventListener("loadeddata", () => { mediaStatus.hidden = true; });
+video.addEventListener("loadeddata", () => { clearLoadingTimer(); mediaStatus.hidden = true; });
+video.addEventListener("canplay", () => { clearLoadingTimer(); mediaStatus.hidden = true; });
 video.addEventListener("playing", () => {
+  clearLoadingTimer();
   mediaStatus.hidden = true;
   updatePlayButton();
   schedule();
 });
 video.addEventListener("waiting", () => {
   if (!mediaReady || video.paused || video.seeking) return;
-  mediaStatus.hidden = false;
-  mediaStatus.textContent = "Buffering footage…";
+  showMediaStatus("Buffering video…", "Retry video");
+  watchLoading();
 });
 video.addEventListener("seeked", () => {
   if (video.readyState >= 2) mediaStatus.hidden = true;
@@ -514,6 +503,8 @@ video.addEventListener("seeked", () => {
 });
 for (const event of ["pause", "ended"]) {
   video.addEventListener(event, () => {
+    clearLoadingTimer();
+    if (event === "pause" && video.readyState < 2) showMediaStatus("Tap to play the cabin footage.");
     if (!mediaReady) return;
     cancelAnimation();
     render();
@@ -521,27 +512,16 @@ for (const event of ["pause", "ended"]) {
   });
 }
 video.addEventListener("error", () => {
+  clearLoadingTimer();
   cancelAnimation();
   mediaReady = false;
-  nominalFps = 0;
-  duration = 15;
-  mediaStatus.hidden = false;
-  mediaStatus.textContent = source.startsWith("blob:")
-    ? "This video could not be played. Choose a supported local file. Demo timeline available."
-    : "Original footage unavailable. Open the local video to use it as the clock.";
-  renderTicks();
+  sourceMatches = false;
+  showMediaStatus("Video could not load. Check your connection and retry.", "Retry video");
   render();
   updatePlayButton();
 });
-
-byId("file").addEventListener("change", (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-  if (fileUrl) URL.revokeObjectURL(fileUrl);
-  fileUrl = URL.createObjectURL(file);
-  setSource(fileUrl, file.name.toLowerCase() === "img_1375.mov" ? 30 : 0);
-  event.target.value = "";
-});
+byId("media-retry").addEventListener("click", () => startVideo(byId("media-retry").textContent === "Retry video"));
+video.addEventListener("click", togglePlay);
 for (const button of modeButtons) {
   button.addEventListener("click", () => {
     mode = button.dataset.overlay;
@@ -554,7 +534,6 @@ rate.addEventListener("change", () => { video.playbackRate = Number(rate.value);
 scrubber.addEventListener("input", () => seek(Number(scrubber.value)));
 const step = (direction) => {
   if (mediaReady) video.pause();
-  demoPlaying = false;
   cancelAnimation();
   seek(clock() + direction / (nominalFps || 30));
   updatePlayButton();
@@ -818,7 +797,7 @@ byId("map-image").addEventListener("error",() => {
 });
 {
   byId("map-image").setAttribute("href","reference-map.webp");
-  setSource("source-video.mp4",30);
+  setSource("source-video-720.mp4",30);
 }
 Promise.all([
   fetch("hybrid-reconstruction.json").then((response) => {if (!response.ok) throw new Error(); return response.json();}),

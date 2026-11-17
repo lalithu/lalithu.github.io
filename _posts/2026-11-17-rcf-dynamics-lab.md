@@ -16,7 +16,7 @@ I wanted to see how much I could reconstruct from a short cabin video of my frie
 The result is a best estimate with editable assumptions. The original detections and failed checks remain available alongside it.
 
 <div class="rcf-embed">
-  <iframe src="{{ '/assets/rcf-replay/index.html' | relative_url }}" title="RC F video, map and physics-informed reconstruction" allow="fullscreen" sandbox="allow-scripts allow-same-origin allow-downloads"></iframe>
+  <iframe src="{{ '/assets/rcf-replay/index.html?v=mobile-1' | relative_url }}" title="RC F video, map and physics-informed reconstruction" allow="fullscreen" sandbox="allow-scripts allow-same-origin allow-downloads"></iframe>
   <noscript>Enable JavaScript to use the interactive reconstruction.</noscript>
 </div>
 
@@ -24,7 +24,7 @@ The replay keeps recorded image features separate from estimated motion. Amber m
 
 ## Start with the frames
 
-The uploaded MOV contains **449 decoded frames**, with presentation timestamps spaced at 1/30 second. Its browser duration is **14.97 seconds**. The portrait presentation is 2160 × 3840; I used a 540 × 960 derivative for the initial analysis. The embedded video is a smaller 1080p copy with the same frame timing and stripped container metadata.
+The uploaded MOV contains **449 decoded frames**, with presentation timestamps spaced at 1/30 second. Its browser duration is **14.97 seconds**. The portrait presentation is 2160 × 3840; I used a 540 × 960 derivative for the initial analysis. The embedded video is a smaller 720p copy with the same frame timing and stripped container metadata.
 
 I first checked the footage as a contact sheet, then inspected larger wheel and windshield crops. The view changes substantially during the clip. Hands cover the steering wheel, the phone moves, and the passenger and glare obscure much of **7.4–10.6 seconds**.
 
@@ -34,7 +34,7 @@ I first checked the footage as a contact sheet, then inspected larger wheel and 
 </figure>
 
 
-<details class="rcf-evidence">
+<details class="rcf-evidence" open>
 <summary>Wheel, windshield and larger sampled frames</summary>
 
 <figure class="rcf-figure">
@@ -106,7 +106,7 @@ Six controls gave a **0.57 m fit RMS**. Two separate check points differed by **
 </figure>
 
 
-<details class="rcf-evidence">
+<details class="rcf-evidence" open>
 <summary>Map inputs, coordinate grids and rejected alignment</summary>
 
 <div class="rcf-frame-grid">
@@ -194,7 +194,7 @@ Round-trip and RANSAC checks test consistency. Independent labels still matter, 
 </figure>
 
 
-<details class="rcf-evidence">
+<details class="rcf-evidence" open>
 <summary>Independent labels and the annotated tracking clip</summary>
 
 <figure class="rcf-figure">

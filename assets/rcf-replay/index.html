@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light">
   <title>RC F trajectory approximation</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="replay.js"></script>
+  <script type="module" src="replay.js?v=mobile-1"></script>
 <script src="embed-resize.js" defer></script>
 </head>
 <body>
@@ -35,15 +35,14 @@
     <section class="panel footage" aria-labelledby="footage-title">
       <div class="panel-header">
         <h2 id="footage-title">Cabin footage</h2>
-        <label class="file-button">Open local video<input type="file" id="file" accept="video/*,.mov"></label>
       </div>
       <div class="stage">
         <div class="portrait" id="portrait">
-          <video id="video" playsinline preload="auto" aria-label="Original cabin footage"></video>
+          <video id="video" playsinline preload="metadata" poster="video-poster.jpg" aria-label="Original cabin footage"></video>
           <svg id="overlay" aria-hidden="true" hidden></svg>
           <span id="overlay-label" class="overlay-label" hidden>Observed image features</span>
         </div>
-        <div class="media-status" id="media-status" role="status">Loading original footage…</div>
+        <div class="media-status" id="media-status" role="status"><span id="media-message">Tap to play the cabin footage.</span> <button type="button" id="media-retry">Play video</button></div>
       </div>
       <div class="overlay-bar">
         <div class="modes" role="group" aria-label="Footage overlay">
