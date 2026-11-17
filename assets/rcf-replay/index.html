@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>RC F / Dynamics Lab</title>
+  <title>RC F trajectory approximation</title>
   <link rel="stylesheet" href="style.css">
   <script type="module" src="replay.js"></script>
 <script src="embed-resize.js" defer></script>
@@ -12,11 +12,10 @@
 <body>
 <main class="workspace">
   <header class="masthead">
-    <div class="case">2016 LEXUS RC F <span></span> CHARLOTTE, NC</div>
     <div class="mast-row">
       <div>
-        <h1>RC F <span>/</span> Dynamics Lab</h1>
-        <p class="location">E Brooklyn Village Avenue <b>×</b> S Brevard Street</p>
+        <h1>RC F trajectory approximation</h1>
+        <p class="location">E Brooklyn Village Ave <b>×</b> S Brevard St</p>
       </div>
       <div class="status" id="model-status" role="status">Loading reconstruction…</div>
     </div>
@@ -48,13 +47,13 @@
       </div>
       <div class="overlay-bar">
         <div class="modes" role="group" aria-label="Footage overlay">
-          <button type="button" data-overlay="none" aria-pressed="true">None</button>
+          <button type="button" data-overlay="none" aria-pressed="false">None</button>
           <button type="button" data-overlay="steering" aria-pressed="false">Steering</button>
           <button type="button" data-overlay="exterior" aria-pressed="false">Exterior features</button>
           <button type="button" data-overlay="flow" aria-pressed="false">Optical flow</button>
-          <button type="button" data-overlay="combined" aria-pressed="false">Combined</button>
+          <button type="button" data-overlay="combined" aria-pressed="true">Combined</button>
         </div>
-        <p id="overlay-note">Original footage · overlay off</p>
+        <p id="overlay-note">Combined · scene and wheel tracks · flow vectors ×3</p>
       </div>
     </section>
 

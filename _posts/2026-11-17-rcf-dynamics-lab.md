@@ -15,14 +15,12 @@ I wanted to see how much I could reconstruct from a short cabin video of a **201
 
 The result is a best estimate with editable assumptions. The original detections and failed checks remain available alongside it.
 
-<div class="rcf-embed" data-replay-url="{{ '/assets/rcf-replay/index.html' | relative_url }}">
-  <img class="rcf-replay-poster" src="{{ '/assets/images/rcf-dynamics-lab/current-ui.webp' | relative_url }}" alt="The synced RC F replay with video, aerial map, telemetry and speed/yaw graphs." width="1440" height="1440">
-  <button type="button" class="rcf-load-replay">Load the interactive replay</button>
-  <iframe title="RC F video, map and physics-informed reconstruction" hidden allow="fullscreen" sandbox="allow-scripts allow-same-origin allow-downloads"></iframe>
-  <noscript>Enable JavaScript to load the interactive reconstruction.</noscript>
+<div class="rcf-embed">
+  <iframe src="{{ '/assets/rcf-replay/index.html' | relative_url }}" title="RC F video, map and physics-informed reconstruction" allow="fullscreen" sandbox="allow-scripts allow-same-origin allow-downloads"></iframe>
+  <noscript>Enable JavaScript to use the interactive reconstruction.</noscript>
 </div>
 
-Use **Observed** for image-space evidence, **Best Estimate** for the fitted reconstruction, and **What-if** to move route anchors or change timing, grip, payload and slip assumptions. Every telemetry field opens its method and provenance. Amber marks the model bridge through the unreliable video interval.
+The replay keeps recorded image features separate from estimated motion. Amber marks the modeled 7.4–10.6 second interval.
 
 ## Start with the frames
 
@@ -240,62 +238,17 @@ The retimed trajectory has about **5 m RMS deviation from the soft sketch**. Its
 
 The replay uses five categories throughout: **Observed, Estimated, Assumed, Simulated and Unavailable**. The occluded interval is visibly Simulated. Event torque stays Unavailable, with factory specifications shown separately.
 
-## Images and development record
+## What better footage would improve
 
-The figures below retain the source references, inspection crops, failed comparisons and interface revisions used during development. They can be opened at full resolution.
+A fixed camera with a clear view of the steering wheel and road would reduce the uncertainty. Less glare and passenger occlusion would preserve more usable landmarks through the turn. Known camera geometry and an independent GPS or IMU trace would help constrain speed and body rotation.
 
-<details class="rcf-evidence">
-<summary>Interface revisions and supplied car artwork</summary>
-
-<div class="rcf-frame-grid">
-<figure class="rcf-figure">
-  <a href="{{ '/assets/images/rcf-dynamics-lab/originals/initial-dark-ui.png' | relative_url }}"><img src="{{ '/assets/images/rcf-dynamics-lab/initial-dark-ui.webp' | relative_url }}" alt="Early dark UI mockup with illustrative motion, before the portfolio light theme and model fit." width="1440" height="900" loading="lazy"></a>
-  <figcaption>Early dark UI mockup with illustrative motion, before the portfolio light theme and model fit.</figcaption>
-</figure>
-
-<figure class="rcf-figure">
-  <a href="{{ '/assets/images/rcf-dynamics-lab/originals/light-ui.png' | relative_url }}"><img src="{{ '/assets/images/rcf-dynamics-lab/light-ui.webp' | relative_url }}" alt="Light-theme prototype after switching to the actual Apple Maps reference." width="1440" height="900" loading="lazy"></a>
-  <figcaption>Light-theme prototype after switching to the actual Apple Maps reference.</figcaption>
-</figure>
-
-<figure class="rcf-figure">
-  <a href="{{ '/assets/images/rcf-dynamics-lab/originals/mobile-ui.png' | relative_url }}"><img src="{{ '/assets/images/rcf-dynamics-lab/mobile-ui.webp' | relative_url }}" alt="Early mobile layout check, with footage stacked above the map and telemetry." width="390" height="844" loading="lazy"></a>
-  <figcaption>Early mobile layout check, with footage stacked above the map and telemetry.</figcaption>
-</figure>
-
-<figure class="rcf-figure">
-  <a href="{{ '/assets/images/rcf-dynamics-lab/originals/artwork-ui.png' | relative_url }}"><img src="{{ '/assets/images/rcf-dynamics-lab/artwork-ui.webp' | relative_url }}" alt="The supplied car artwork replacing the original schematic silhouette." width="1440" height="900" loading="lazy"></a>
-  <figcaption>The supplied car artwork replacing the original schematic silhouette.</figcaption>
-</figure>
-
-<figure class="rcf-figure">
-  <a href="{{ '/assets/images/rcf-dynamics-lab/originals/cv-review-ui.png' | relative_url }}"><img src="{{ '/assets/images/rcf-dynamics-lab/cv-review-ui.webp' | relative_url }}" alt="The separate diagnostic view used to inspect actual CV tracks and map controls." width="1440" height="1000" loading="lazy"></a>
-  <figcaption>The separate diagnostic view used to inspect actual CV tracks and map controls.</figcaption>
-</figure>
-
-<figure class="rcf-figure">
-  <a href="{{ '/assets/images/rcf-dynamics-lab/originals/current-ui.png' | relative_url }}"><img src="{{ '/assets/images/rcf-dynamics-lab/current-ui.webp' | relative_url }}" alt="Current synced replay with independent heading and velocity, provenance, uncertainty and bottom telemetry." width="1440" height="1440" loading="lazy"></a>
-  <figcaption>Current synced replay with independent heading and velocity, provenance, uncertainty and bottom telemetry.</figcaption>
-</figure>
-
-<figure class="rcf-figure">
-  <a href="{{ '/assets/images/rcf-dynamics-lab/originals/whatif-ui.png' | relative_url }}"><img src="{{ '/assets/images/rcf-dynamics-lab/whatif-ui.webp' | relative_url }}" alt="What-if controls and editable route anchors used to explore assumptions." width="1440" height="1440" loading="lazy"></a>
-  <figcaption>What-if controls and editable route anchors used to explore assumptions.</figcaption>
-</figure>
-
-<figure class="rcf-figure">
-  <a href="{{ '/assets/images/rcf-dynamics-lab/originals/car-artwork.png' | relative_url }}"><img src="{{ '/assets/images/rcf-dynamics-lab/car-artwork.webp' | relative_url }}" alt="Owner-supplied racing-car artwork used as a visual proxy at production RC F body scale." width="400" height="1000" loading="lazy"></a>
-  <figcaption>Owner-supplied racing-car artwork used as a visual proxy at production RC F body scale.</figcaption>
-</figure>
-
-</div>
-</details>
+This clip still leaves gaps. The reconstruction bridges them with explicit assumptions, and the alternative fits show how much those assumptions can change the result.
 
 ## Data and reproduction
 
 Python/PyAV handles decoding; OpenCV, NumPy, SciPy and pyproj support tracking and calibration. The trajectory solver is shared JavaScript used offline and in the browser. Matplotlib generates the diagnostics. The replay runs as static HTML, CSS and JavaScript, with the video as its master clock.
 
-The numerical checks cover derivatives, sideslip, timestamps, the stationary opening, settled exit and assumed physical limits. Chrome checks covered playback, scrubbing, overlays, provenance, live refits, anchor dragging and mobile width. Safari verification remains pending.
+Checks cover the spline derivatives, sideslip, timestamps, stationary opening, settled exit and assumed physical limits. The source code and preserved diagnostics are available below.
 
 [Code and numerical evidence package]({{ '/assets/downloads/rcf-dynamics-lab/reconstruction.zip' | relative_url }}) · [Official map records]({{ '/assets/downloads/rcf-dynamics-lab/official-map-records.json' | relative_url }}) · [Categorized time series]({{ '/assets/downloads/rcf-dynamics-lab/best-estimate.json' | relative_url }}) · [Full methods and assumptions]({{ '/assets/downloads/rcf-dynamics-lab/methods.md' | relative_url }})
 

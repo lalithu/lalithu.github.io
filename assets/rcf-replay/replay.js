@@ -18,7 +18,7 @@ let previousTick = 0;
 let animation = null;
 let fileUrl;
 let source = "";
-let mode = "none";
+let mode = "combined";
 let shownFrame = null;
 let sourceMatches = false;
 let view = "estimate";
@@ -249,25 +249,59 @@ function drawOverlay(time) {
     return;
   }
   const row = evidenceAt(time);
+  const initialFrame = row.frame === 1;
+  const tracks = initialFrame ? observations.frames[1].exterior : row.exterior;
   overlay.replaceChildren();
   const scene = ["exterior", "flow", "combined"].includes(mode);
   const wheel = ["steering", "combined"].includes(mode);
+  const definitions = svgElement("defs", {});
+  for (const [name, color] of [["inlier", "#00e1ff"], ["outlier", "#ff765c"]]) {
+    const marker = svgElement("marker", {
+      id: "cv-flow-" + name, viewBox: "0 0 8 8", refX: 7, refY: 4,
+      markerWidth: 4, markerHeight: 4, orient: "auto",
+    });
+    marker.append(svgElement("path", {
+      d: "M0 0 8 4 0 8 2 4Z", fill: color, stroke: "#07151e", "stroke-width": .8,
+    }));
+    definitions.append(marker);
+  }
+  overlay.append(definitions);
   if (scene) {
-    for (const track of row.exterior) {
-      const color = track.inlier ? "#75ccff" : "#e4ad60";
-      if (mode === "flow" || mode === "combined") overlay.append(svgElement("path", {
-        d: "M" + track.from.join(" ") + "L" + track.to.join(" "), stroke: color, "stroke-width":1.3, fill:"none",
+    for (const track of tracks) {
+      const color = track.inlier ? "#00e1ff" : "#ff765c";
+      const point = initialFrame ? track.from : track.to;
+      if (!initialFrame && (mode === "flow" || mode === "combined")) {
+        // Enlarge displacement for legibility while keeping the arrow tip
+        // anchored to the actual current-frame detection.
+        const tail = point.map((value, axis) => value - 3 * (track.to[axis] - track.from[axis]));
+        const path = "M" + tail.join(" ") + "L" + point.join(" ");
+        overlay.append(svgElement("path", {
+          d: path, stroke: "#07151e", "stroke-width": 5.5,
+          "stroke-linecap": "round", fill: "none",
+        }));
+        overlay.append(svgElement("path", {
+          d: path, stroke: color, "stroke-width": 2.5, fill: "none",
+          "marker-end": "url(#cv-flow-" + (track.inlier ? "inlier" : "outlier") + ")",
+        }));
+      }
+      overlay.append(svgElement("circle", {
+        cx: point[0], cy: point[1], r: 4.2, fill: color,
+        stroke: "#07151e", "stroke-width": 1.8,
       }));
-      overlay.append(svgElement("circle", {cx:track.to[0],cy:track.to[1],r:2.2,fill:color}));
     }
   }
   if (wheel && row.wheel) {
-    for (const point of row.wheel.points) overlay.append(svgElement("circle", {cx:point[0],cy:point[1],r:2.3,fill:"#ffd36e"}));
+    for (const point of row.wheel.points) overlay.append(svgElement("circle", {
+      cx: point[0], cy: point[1], r: 4.5, fill: "#ffdc42",
+      stroke: "#201706", "stroke-width": 2,
+    }));
   }
-  byId("overlay-label").textContent = "Observed · image-space points";
-  byId("overlay-note").textContent = scene && row.scene
-    ? "Observed · " + row.scene.inliers + " scene-model inliers"
-    : wheel && row.wheel ? "Observed · wheel-patch points" : "Unavailable · " + row.status;
+  const flow = !initialFrame && ["flow", "combined"].includes(mode);
+  byId("overlay-label").textContent = flow ? "Observed · flow vectors ×3" : "Observed · image-space points";
+  const available = scene && tracks.length > 0 || wheel && row.wheel;
+  byId("overlay-note").textContent = available
+    ? "Cyan scene · gold wheel · red outliers" + (flow ? " · vectors ×3" : "")
+    : "Unavailable · " + row.status;
 }
 
 function graph(id, key, scale) {
