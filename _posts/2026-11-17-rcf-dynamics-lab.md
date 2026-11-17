@@ -11,7 +11,7 @@ published: true
 <link rel="stylesheet" href="{{ '/assets/rcf-replay/article.css' | relative_url }}">
 <script src="{{ '/assets/rcf-replay/article.js' | relative_url }}" defer></script>
 
-I wanted to see how much I could reconstruct from a short cabin video of a **2016 Lexus RC F** at E Brooklyn Village Avenue and S Brevard Street in Charlotte. With Codex, I built a replay that combines the original footage, tracked image features, official map records and a model of plausible vehicle motion.
+I wanted to see how much I could reconstruct from a short cabin video of my friend's **2016 Lexus RC F** pulling out at E Brooklyn Village Avenue and S Brevard Street in Charlotte. I built a replay that combines the original footage, tracked image features, official map records and a model of plausible vehicle motion.
 
 The result is a best estimate with editable assumptions. The original detections and failed checks remain available alongside it.
 
