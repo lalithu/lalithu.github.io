@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Lorca Notes — Embedded Model Interface</title>
+  <desc id="desc">A vector illustration of the first Notes interface with sample comparison notes, a margin suggestion, an editable table preview, and the Model following control.</desc>
+  <defs>
+    <clipPath id="window"><rect x="1" y="1" width="1198" height="758" rx="20"/></clipPath>
+    <style>
+      text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#eceae6;font-size:18px}
+      .muted{fill:#aaa9a5}.small{font-size:14px}.tiny{font-size:12px}.nav{font-family:ui-monospace,'SFMono-Regular',monospace;font-size:16px}.serif{font-family:'Iowan Old Style',Palatino,Georgia,serif}.rule{stroke:#4b4c4b;stroke-width:1}.blue{fill:#269dff}
+    </style>
+  </defs>
+  <g clip-path="url(#window)">
+    <rect width="1200" height="760" fill="#1e1e1e"/>
+    <rect width="1200" height="56" fill="#252525"/>
+    <path d="M0 56H1200" class="rule"/>
+    <circle cx="24" cy="27" r="6" fill="#ff6058"/><circle cx="45" cy="27" r="6" fill="#ffbd2e"/><circle cx="66" cy="27" r="6" fill="#28c840"/>
+    <text x="111" y="24" class="small">lorca</text><text x="111" y="43" class="tiny muted">Notes</text>
+    <rect x="10" y="68" width="202" height="680" rx="28" fill="#383837" stroke="#4b4c4b"/>
+    <text x="67" y="127" class="serif" style="font-size:38px">lorca</text>
+    <g class="muted" fill="none" stroke="#aaa9a5" stroke-width="1.7">
+      <rect x="33" y="176" width="7" height="7" rx="1"/><rect x="44" y="176" width="7" height="7" rx="1"/><rect x="33" y="187" width="7" height="7" rx="1"/><rect x="44" y="187" width="7" height="7" rx="1"/>
+      <path d="M33 234h18v13H43l-6 5v-5h-4z"/>
+      <rect x="33" y="290" width="19" height="15" rx="2"/><path d="M39 290v-4h8v4M33 296h19"/>
+    </g>
+    <text x="67" y="192" class="nav muted">Overview</text><text x="67" y="248" class="nav muted">Chats</text><text x="67" y="304" class="nav muted">Job Apps</text>
+    <rect x="23" y="329" width="176" height="45" rx="10" fill="#344653"/>
+    <g fill="none" stroke="#269dff" stroke-width="1.7"><rect x="34" y="342" width="17" height="20" rx="2"/><path d="M39 346h8M39 351h8M39 356h6"/></g>
+    <text x="67" y="358" class="nav">Notes</text>
+    <rect x="39" y="385" width="153" height="32" rx="6" fill="#414140"/><text x="66" y="406" class="small">Notion demo</text>
+    <text x="37" y="652" class="nav muted">Settings</text><path d="M27 683H195" class="rule"/>
+    <circle cx="35" cy="716" r="4" fill="#59c58a"/><text x="48" y="721" class="tiny muted">Ollama · Local</text>
+    <text x="248" y="116" class="serif" style="font-size:34px">Notes</text>
+    <rect x="1055" y="89" width="111" height="31" rx="7" fill="#353535" stroke="#50504e"/><text x="1078" y="110" class="small">New note</text>
+    <text x="270" y="177">Notion demo</text>
+    <text x="270" y="225">Table with data:</text>
+    <text x="270" y="258">approach A cheap, harder to maintain</text>
+    <text x="270" y="291">approach B expensive, straightforward</text>
+    <text x="270" y="324">approach C somewhere in between, needs testing</text>
+    <path d="M271 340v24" stroke="#269dff" stroke-width="2"/>
+    <g fill="none" stroke="#aaa9a5" stroke-width="1.5"><rect x="243" y="211" width="16" height="14" rx="2"/><path d="M243 216h16M249 211v14"/></g>
+    <path d="M622 382l14-13 14 13" fill="#303030" stroke="#50504e"/>
+    <rect x="448" y="380" width="704" height="244" rx="13" fill="#303030" stroke="#50504e"/>
+    <text x="468" y="411" class="small">Compare approaches</text><text x="1121" y="411" class="muted">×</text>
+    <rect x="467" y="430" width="666" height="32" fill="#393939"/>
+    <g class="small"><text x="477" y="451">Approach</text><text x="568" y="451">Cost</text><text x="747" y="451">Maintainability</text><text x="1017" y="451">Notes</text></g>
+    <g class="tiny"><text x="477" y="484">A</text><text x="568" y="484">Cheap</text><text x="747" y="484">Harder to maintain</text><text x="477" y="520">B</text><text x="568" y="520">Expensive</text><text x="747" y="520">Straightforward</text><text x="477" y="556">C</text><text x="568" y="548"><tspan x="568">Somewhere in</tspan><tspan x="568" dy="14">between</tspan></text><text x="747" y="556">Needs testing</text></g>
+    <g class="rule" fill="none"><path d="M467 462h666M467 498h666M467 534h666M467 570h666"/></g>
+    <text x="468" y="604" class="tiny muted">qwen3:14b · suggestion</text><rect x="1024" y="586" width="109" height="25" rx="6" fill="#3d3d3d" stroke="#61615e"/><text x="1046" y="603" class="tiny">Use table</text>
+    <g fill="none" stroke="#aaa9a5" stroke-width="1.3"><path d="M250 716l2-5 2 5 5 2-5 2-2 5-2-5-5-2z"/></g>
+    <text x="269" y="723" class="small muted">Model following⌄</text>
+  </g>
+  <rect x="1" y="1" width="1198" height="758" rx="20" fill="none" stroke="#525250"/>
+</svg>
