@@ -6,3 +6,5 @@ vendor
 
 # Keep the untouched original clip outside the published replay.
 /assets/rcf-replay/source-video.mov
+
+_data/post_modified_times.json
