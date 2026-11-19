@@ -52,6 +52,6 @@ Milestone 1 proposed a phone-to-Mac chat companion. I narrowed the final product
 
 I checked the build and a real local-model flow on an iPhone 16 Pro Simulator running iOS 18: connection, inline generation, passage progress and saved-note reopening. A focused check also covered opening the editor and restoring typing after Done. There is more to test across device sizes and accessibility settings; I am not claiming exhaustive coverage or a physical-device run.
 
-Calendar export, desktop synchronization, authenticated phone pairing and iMessage remain outside this version. I recorded an [eight-minute capstone demo](https://www.youtube.com/watch?v=OmjLkg07w2c); the repository includes it above the earlier milestone videos. The useful result is already a small native note editor where I can keep my own writing and work with model additions in place.
+Calendar export, desktop synchronization, authenticated phone pairing and iMessage remain outside this version. The [updated final capstone demo](https://www.youtube.com/watch?v=lsd-frASyuI) accompanies the final Notes/Settings tab navigation, Codable preferences and escaping URLSession completion updates. The repository keeps the earlier recordings as milestone history. The useful result is already a small native note editor where I can keep my own writing and work with model additions in place.
 
 [Source, setup and capstone documentation](https://github.com/lalithu/lorca-ios)
