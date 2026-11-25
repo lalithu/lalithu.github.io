@@ -7,7 +7,7 @@ author: Lalith Uriti
 permalink: /blog/hybrid-intelligence/
 ---
 
-I've settled on the fact that I can't practically rely on local models, given my hardware limitations and current open-model benchmarks on consumer hardware.
+I've settled on the fact that I can't practically rely on local models, given my hardware limitations and current open-model intelligence thats able to infer on consumer hardware.
 
 They lack the vocabulary, contextual understanding, and intuitive grasp of intent that make frontier models incredibly effective at understanding what I actually want to accomplish.
 
