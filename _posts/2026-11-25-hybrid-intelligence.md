@@ -1,18 +1,24 @@
 ---
 layout: post
-title: "Hybrid Intelligence, parent-kid"
+title: "Hybrid Intelligence Architecture, parent-kid"
 date: 2026-11-25 06:06:32 -0500
 date_has_time: true
 author: Lalith Uriti
 permalink: /blog/hybrid-intelligence/
 ---
 
-What I've realized is that I can't practically rely on local models, at least not yet. They lack the vocabulary, contextual understanding, and intuitive grasp of intent that make frontier models incredibly effective at understanding what I actually want to accomplish.
+I've settled on the fact that I can't practically rely on local models, given my hardware limitations and current open-model benchmarks on consumer hardware.
 
-Rather than treating this as a limitation, why not have frontier models delegate well-defined tasks to local models? Let frontier models handle the ambiguity, reasoning, and decision-making, while local models handle execution wherever they're capable. Hybrid Intelligence, parent-kid.
+They lack the vocabulary, contextual understanding, and intuitive grasp of intent that make frontier models incredibly effective at understanding what I actually want to accomplish.
 
-This would allow me to take advantage of my own computational resources, continuously benchmark local models against real-world workloads, and get meaningful work done while reducing my reliance on cloud credits.
+Let frontier models handle the ambiguity, reasoning, and decision-making, while local models handle execution wherever they're capable. Hybrid intelligence, parent-kid.
 
-At this point, my AI subscriptions are on par with my Spotify subscription in terms of how essential they've become to my soul and everyday life. I don't necessarily want to replace them. I want to get more out of them.
+I can take advantage of my own computational resources, continuously benchmark local models against real-world workloads, and get meaningful work done while reducing my reliance on cloud credits.
 
-Perhaps the future of personal AI isn't entirely local or entirely cloud-based, but a symbiotic relationship between the two
+At this point, my AI subscriptions are on par with my Spotify subscription in terms of how essential they've become to my soul and everyday life. I don't necessarily want or need to replace them at their current pricing. 
+
+I want to get more out of them.
+
+The future of personal AI cannot be entirely local or entirely cloud-based, but will be a relationship between the two. 
+
+Locality allows for greater privacy, and seamless cloud integration yields incredible speeds and frontier intelligence.

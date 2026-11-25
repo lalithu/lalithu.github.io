@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Embedded Model Note Interface — Notion New Grad Role Demo"
+title: "Embedded Model in Note Interfaces - Demo"
 date: 2026-11-18 13:00:00 -0500
 date_has_time: true
 author: Lalith Uriti

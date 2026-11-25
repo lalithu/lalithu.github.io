@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Weight-Space Programming"
+title: "Weight-Space Programming & Applications"
 author: Lalith Uriti
 permalink: /blog/weight-space-programming/
 date: 2026-11-08 17:14:04 -0500

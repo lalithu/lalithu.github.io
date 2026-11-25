@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reconstructing an RC F maneuver from video"
+title: "Reconstructing the RC F's 360 from cabin footage"
 date: 2026-11-17 14:43:24 -0500
 date_has_time: true
 author: Lalith Uriti
