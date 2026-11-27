@@ -1,0 +1,8 @@
+{%- assign modified_date = site.data.post_dates.posts[include.post.path].modified_at -%}
+{%- assign published_seconds = site.data.post_dates.posts[include.post.path].published_at | date: "%s" | plus: 0 -%}
+{%- assign modified_seconds = modified_date | date: "%s" | plus: 0 -%}
+{%- if modified_date and modified_seconds > published_seconds -%}
+<footer class="post-update">
+  <p class="post-meta">Last updated: <time class="dt-updated" datetime="{{ modified_date | date_to_xmlschema }}" itemprop="dateModified">{{ modified_date | date: "%B %-d, %Y · %-I:%M:%S %p %Z" }}</time></p>
+</footer>
+{%- endif -%}

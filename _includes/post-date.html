@@ -1,8 +1,10 @@
-{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-{%- assign modified_date = site.data.post_modified_times[include.post.path] -%}
-{%- assign display_date = modified_date | default: include.post.date -%}
-{%- if modified_date -%}Updated {% endif -%}
-<time class="{% if modified_date %}dt-updated{% else %}dt-published{% endif %}" datetime="{{ display_date | date_to_xmlschema }}" itemprop="{% if modified_date %}dateModified{% else %}datePublished{% endif %}">
-  {{- display_date | date: date_format -}}
-  {%- if modified_date or include.post.date_has_time %} · {{ display_date | date: "%-I:%M:%S %p %Z" }}{% endif -%}
-</time>
+{%- assign dates = site.data.post_dates.posts[include.post.path] -%}
+{%- if dates.published_at -%}
+{%- if dates.has_publication_time -%}
+<time class="dt-published" datetime="{{ dates.published_at | date_to_xmlschema }}" itemprop="datePublished">{{- dates.published_at | date: "%B %-d, %Y · %-I:%M:%S %p %Z" -}}</time>
+{%- else -%}
+<time class="dt-published" datetime="{{ dates.published_at }}" itemprop="datePublished" title="Historical publication date; exact publication time is unavailable">{{- dates.published_at | date: "%B %-d, %Y" -}}</time>
+{%- endif -%}
+{%- else -%}
+<span class="post-unpublished">Not published yet</span>
+{%- endif -%}

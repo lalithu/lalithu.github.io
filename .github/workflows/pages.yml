@@ -26,7 +26,7 @@ jobs:
         with:
           ruby-version: '3.1'
       - name: Generate post timestamps from Git
-        run: ruby scripts/post_modified_times.rb
+        run: ruby scripts/post_dates.rb
       - uses: actions/configure-pages@v5
       - uses: actions/jekyll-build-pages@v1
         with:

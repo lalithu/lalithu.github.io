@@ -131,3 +131,16 @@
     }
   }
 }
+
+// Revision metadata stays separate from the original publication timestamp.
+.post-update {
+  margin-top: $spacing-unit;
+  padding-top: $spacing-unit / 2;
+  border-top: 1px solid $grey-color-light;
+
+  .post-meta {
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+}

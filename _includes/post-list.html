@@ -1,5 +1,7 @@
 <ul class="post-list">
-  {%- for post in site.posts -%}
+  {%- for post_path in site.data.post_dates.order -%}
+  {%- assign post = site.posts | where: "path", post_path | first -%}
+  {%- unless post -%}{%- continue -%}{%- endunless -%}
   <li>
     <span class="post-meta">{% include post-date.html post=post %}</span>
     <h3>
